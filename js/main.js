@@ -52,7 +52,7 @@
     var slides = Array.prototype.slice.call(track.children);
     slides.forEach(function (_, i) {
       var dot = document.createElement("button");
-      dot.setAttribute("aria-label", "Ir a la imagen " + (i + 1));
+      dot.setAttribute("aria-label", "Aller à l'image " + (i + 1));
       if (i === 0) dot.classList.add("active");
       dot.addEventListener("click", function () { scrollToSlide(i); });
       dotsWrap.appendChild(dot);
@@ -117,11 +117,11 @@
       };
 
       if (!data.name || !data.email || !data.message) {
-        setStatus("Por favor completa nombre, correo y mensaje.", "err");
+        setStatus("Merci de renseigner le nom, l'email et le message.", "err");
         return;
       }
 
-      setStatus("Enviando...", "");
+      setStatus("Envoi en cours...", "");
       submitBtn.disabled = true;
 
       fetch("/.netlify/functions/contact", {
@@ -134,11 +134,11 @@
           return res.json();
         })
         .then(function () {
-          setStatus("¡Gracias! Hemos recibido tu mensaje y te contactaremos pronto.", "ok");
+          setStatus("Merci ! Nous avons bien reçu votre message et vous contacterons bientôt.", "ok");
           form.reset();
         })
         .catch(function () {
-          setStatus("No pudimos enviar tu mensaje. Intenta de nuevo o escríbenos directamente por WhatsApp.", "err");
+          setStatus("Nous n'avons pas pu envoyer votre message. Réessayez ou écrivez-nous directement par WhatsApp.", "err");
         })
         .finally(function () {
           submitBtn.disabled = false;

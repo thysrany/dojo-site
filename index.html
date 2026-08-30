@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <!--
   ============================================================
-  DOJO WEBSITE TEMPLATE — build notes for Rany / Idea 2 Visual
+  MUSHIN DOJO — site web (basé sur le gabarit dojo)
   ============================================================
-  Search for "CUSTOMIZE" comments through this file — each one
-  marks something that should change per client:
-    - Dojo name, tagline, founder story
-    - Logo (assets/logo.svg or .png)
-    - Photos (assets/*.jpg — currently styled placeholders)
-    - Address / phone / WhatsApp / email
-    - Program names & descriptions
-    - Instructor names, ranks, quotes, photos
-    - Social links
-  Colors + fonts live as CSS custom properties at the top of
-  css/styles.css — change the palette there once, it cascades
-  everywhere (no per-section overrides to hunt down).
+  Notes pour Rany / Idea 2 Visual — cherchez "CUSTOMIZE" dans ce
+  fichier : chaque commentaire marque une info encore manquante
+  côté client (adresse, téléphone, email, horaires précis,
+  biographie de Worlkings Belotte, liens réseaux sociaux réels,
+  photos définitives). Tout le reste (nom du dojo, disciplines,
+  histoire de Sensei Alejandro, logo) vient du site actuel du
+  client, mushindojo.net.
 
-  Contact form posts to /.netlify/functions/contact, which
-  sends the message through Resend. See README.md for setup.
+  Couleurs + polices : variables CSS en haut de css/styles.css.
+  Formulaire de contact : voir js/main.js + netlify/functions/contact.js.
 -->
-<html lang="es">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shugyo Shin Dojo — Escuela de Artes Marciales</title>
-<meta name="description" content="Clases de artes marciales tradicionales. Defensa personal, disciplina y valores para niños, jóvenes y adultos.">
+<title>Mushin Dojo — École d'Aikido et Karaté en Haïti</title>
+<meta name="description" content="Mushin Dojo propose des cours d'aikido et de karaté pour tous niveaux en Haïti, avec des instructeurs passionnés et un esprit de discipline et de respect.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -36,23 +31,24 @@
 <header class="site-header" id="site-header">
   <div class="nav-inner">
     <a href="#top" class="brand">
-      <!-- CUSTOMIZE: replace with client logo (assets/logo.svg) -->
+      <!-- CUSTOMIZE: idéalement héberger le logo localement dans assets/ plutôt que le lien externe -->
       <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 100 100" class="enso enso-brand"><circle cx="50" cy="50" r="42" fill="none"/></svg>
+        <img src="https://mushindojo.net/wp-content/uploads/2026/06/mushin.png" alt="Logo Mushin Dojo" style="height:34px;width:auto;">
       </span>
-      <span class="brand-text">Shugyo Shin<br><em>Dojo</em></span>
+      <span class="brand-text">Mushin<br><em>Dojo</em></span>
     </a>
 
     <nav class="main-nav" id="main-nav">
       <a href="#dojo">Dojo</a>
-      <a href="#historia">Historia</a>
-      <a href="#instructores">Instructores</a>
-      <a href="#programas">Programas</a>
-      <a href="#precios">Precios</a>
-      <a href="#contacto" class="nav-cta">Contacto</a>
+      <a href="#historia">À Propos</a>
+      <a href="#programas">Programmes</a>
+      <a href="#instructores">Instructeurs</a>
+      <a href="#evenements">Événements</a>
+      <a href="#horaires">Horaires</a>
+      <a href="#contacto" class="nav-cta">Contact</a>
     </nav>
 
-    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -65,287 +61,335 @@
     <span class="kanji-watermark" aria-hidden="true">道</span>
     <div class="hero-inner reveal">
       <div class="hero-copy">
-        <p class="eyebrow">Escuela de Artes Marciales Tradicionales</p>
-        <!-- CUSTOMIZE: dojo name -->
-        <h1>SHUGYO SHIN<br>DOJO</h1>
+        <p class="eyebrow">École d'Arts Martiaux Traditionnels</p>
+        <h1>MUSHIN<br>DOJO</h1>
         <p class="lede">
-          Clases en <strong>[Ciudad, País]</strong>. Defensa personal, disciplina
-          y valores para niños, jóvenes y adultos, en un espacio fiel a la
-          tradición marcial japonesa.
+          Cours d'<strong>Aikido</strong> et de <strong>Karaté</strong> en <strong>Haïti</strong>.
+          Défense personnelle, discipline et valeurs pour enfants, jeunes et adultes,
+          dans un esprit fidèle à la tradition martiale japonaise.
         </p>
         <p class="body-copy">
-          El <strong>[Nombre del Dojo]</strong> fue fundado en <strong>[mes, año]</strong> por
-          <strong>[Nombre del Fundador] Sensei</strong>, [grado] Dan y practicante
-          certificado por [organización matriz].
+          Le <strong>Mushin Dojo</strong> est né de la passion pour l'aïkido et le karaté,
+          mêlant discipline japonaise et esprit haïtien. Nos cours s'adressent à tous
+          les âges et tous les niveaux, du débutant au pratiquant confirmé.
         </p>
         <p class="body-copy">
-          Somos <strong>dojo afiliado</strong> a <strong>[Federación / Hombu Dojo]</strong>,
-          lo que garantiza una enseñanza fiel al linaje original del arte.
+          Nous cultivons <strong>respect, courage et harmonie</strong> à travers la
+          pratique martiale, guidés par des instructeurs passionnés.
         </p>
         <div class="hero-actions">
-          <a href="#contacto" class="btn btn-primary">Solicitar Clase de Prueba</a>
-          <a href="#programas" class="btn btn-ghost">Ver Programas</a>
+          <a href="#contacto" class="btn btn-primary">Réserver un Cours d'Essai</a>
+          <a href="#programas" class="btn btn-ghost">Voir les Programmes</a>
         </div>
       </div>
       <div class="hero-media">
         <svg viewBox="0 0 100 100" class="enso enso-hero" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none"/></svg>
-        <!-- CUSTOMIZE: replace with real action photo -->
+        <!-- CUSTOMIZE: remplacer par une vraie photo d'action (aikido ou karaté) -->
         <div class="photo-frame hero-photo">
           <div class="photo-placeholder">
-            <span>Foto de técnica en acción<br>(1000×1200px sugerido)</span>
+            <span>Photo de technique en action<br>(1000×1200px suggéré)</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ VISION / AFFILIATION ============ -->
+  <!-- ============ NOTRE HISTOIRE ============ -->
   <section class="section section-dark vision" id="historia">
     <div class="section-inner two-col reveal">
       <div class="vision-emblem">
-        <!-- CUSTOMIZE: replace with client / federation emblem -->
+        <!-- CUSTOMIZE: écusson du dojo ou de l'Aikikai República Dominicana, si disponible -->
         <div class="emblem-circle">
-          <span>ESCUDO<br>/ EMBLEMA</span>
+          <span>ÉCUSSON<br>AIKIKAI RD</span>
         </div>
       </div>
       <div class="vision-copy">
-        <p class="eyebrow eyebrow-light">Nuestra Misión</p>
-        <h2>[Nombre de la Asociación]</h2>
+        <p class="eyebrow eyebrow-light">Notre Histoire</p>
+        <h2>Discipline Japonaise, Esprit Haïtien</h2>
         <p>
-          La misión de <strong>[Nombre del Dojo / Asociación]</strong> es preservar
-          y difundir la práctica tradicional de <strong>[arte marcial]</strong> en
-          <strong>[país]</strong>, estableciendo normas y programas que garanticen
-          una formación completa a nivel físico, mental y espiritual.
+          Mushin Dojo est né de la passion pour l'aïkido et le karaté, mêlant
+          discipline japonaise et esprit haïtien. Notre mission est de transmettre
+          ces deux arts avec exigence et bienveillance, à tous les âges et à tous
+          les niveaux.
         </p>
         <p>
-          Representamos oficialmente a nuestra comunidad ante <strong>[organización
-          matriz / Hombu Dojo]</strong>, asegurando que la enseñanza siga fielmente
-          el legado de <strong>[fundador del arte]</strong>.
+          Nos valeurs fondamentales — <strong>respect, courage, esprit et
+          harmonie</strong> — guident chaque cours, chaque technique et chaque
+          échange entre élèves et instructeurs. Le dojo est fier de son
+          affiliation avec <strong>Aikikai República Dominicana</strong>, qui
+          renforce notre engagement envers l'excellence dans l'enseignement des
+          arts martiaux.
         </p>
-        <a href="#" class="btn btn-outline-light">Más Información</a>
+        <a href="#" class="btn btn-outline-light">En Savoir Plus</a>
       </div>
     </div>
   </section>
 
-  <!-- ============ GALLERY ============ -->
+  <!-- ============ GALERIE ============ -->
   <section class="section gallery-section">
     <div class="gallery reveal" id="gallery">
-      <button class="gallery-arrow gallery-prev" aria-label="Anterior">&#10094;</button>
+      <button class="gallery-arrow gallery-prev" aria-label="Précédent">&#10094;</button>
       <div class="gallery-track" id="gallery-track">
-        <!-- CUSTOMIZE: swap each placeholder for a real dojo photo -->
-        <div class="gallery-slide"><div class="photo-placeholder">Entrenamiento de armas</div></div>
-        <div class="gallery-slide"><div class="photo-placeholder">Clase infantil</div></div>
-        <div class="gallery-slide"><div class="photo-placeholder">Práctica de adultos</div></div>
-        <div class="gallery-slide"><div class="photo-placeholder">Examen de grado</div></div>
-        <div class="gallery-slide"><div class="photo-placeholder">Interior del dojo</div></div>
+        <!-- CUSTOMIZE: remplacer chaque photo par une vraie image du dojo -->
+        <div class="gallery-slide"><div class="photo-placeholder">Séminaire avec Sensei Ralph</div></div>
+        <div class="gallery-slide"><div class="photo-placeholder">Cours d'aikido</div></div>
+        <div class="gallery-slide"><div class="photo-placeholder">Cours de karaté</div></div>
+        <div class="gallery-slide"><div class="photo-placeholder">Examen de grade</div></div>
+        <div class="gallery-slide"><div class="photo-placeholder">Intérieur du dojo</div></div>
       </div>
-      <button class="gallery-arrow gallery-next" aria-label="Siguiente">&#10095;</button>
+      <button class="gallery-arrow gallery-next" aria-label="Suivant">&#10095;</button>
       <div class="gallery-dots" id="gallery-dots"></div>
     </div>
   </section>
 
-  <!-- ============ PHILOSOPHY + CONTACT STRIP ============ -->
+  <!-- ============ PHILOSOPHIE + CONTACT ============ -->
   <section class="section philosophy" id="filosofia">
     <span class="kanji-watermark kanji-watermark-right" aria-hidden="true">心</span>
     <div class="section-inner two-col reveal">
       <div>
-        <h2 class="accent-heading">Nuestra Filosofía</h2>
+        <h2 class="accent-heading">Notre Philosophie</h2>
         <p class="body-copy">
-          En <strong>[Nombre del Dojo]</strong>, la práctica marcial se fundamenta en
-          la disciplina, el respeto y la búsqueda de la armonía interior. No es
-          solo defensa personal — es un camino de vida guiado por los principios
-          del <strong>Bushidō</strong>, el código del guerrero samurái.
+          Au <strong>Mushin Dojo</strong>, la pratique de l'aïkido et du karaté se
+          fonde sur la discipline, le respect et la recherche de l'harmonie
+          intérieure. Ce n'est pas seulement de la défense personnelle — c'est un
+          chemin de vie guidé par les principes du <strong>Bushidō</strong>, le code
+          du guerrier samouraï.
         </p>
-        <h3 class="virtues-title">Las siete virtudes del Bushidō</h3>
+        <h3 class="virtues-title">Les sept vertus du Bushidō</h3>
         <ol class="virtues-list">
-          <li><strong>Gi (義)</strong> — Justicia o Rectitud</li>
-          <li><strong>Yu (勇)</strong> — Coraje</li>
-          <li><strong>Jin (仁)</strong> — Compasión</li>
-          <li><strong>Rei (礼)</strong> — Respeto, cortesía</li>
-          <li><strong>Makoto (誠)</strong> — Honestidad, sinceridad absoluta</li>
-          <li><strong>Meiyo (名誉)</strong> — Honor</li>
-          <li><strong>Chūgi (忠義)</strong> — Lealtad</li>
+          <li><strong>Gi (義)</strong> — Justice ou Droiture</li>
+          <li><strong>Yu (勇)</strong> — Courage</li>
+          <li><strong>Jin (仁)</strong> — Compassion</li>
+          <li><strong>Rei (礼)</strong> — Respect, courtoisie</li>
+          <li><strong>Makoto (誠)</strong> — Honnêteté, sincérité absolue</li>
+          <li><strong>Meiyo (名誉)</strong> — Honneur</li>
+          <li><strong>Chūgi (忠義)</strong> — Loyauté</li>
         </ol>
       </div>
       <div class="contact-card">
         <h3>Dojo Principal</h3>
-        <p>[Dirección completa, ciudad, país]</p>
-        <h3>Números de Contacto</h3>
-        <p>Teléfono: [+1 (___) ___-____]<br>WhatsApp: [+1 (___) ___-____]</p>
-        <h3>Correo Electrónico</h3>
-        <p>[info@tudojo.com]</p>
+        <p>[Adresse complète, ville, Haïti]</p>
+        <h3>Numéros de Contact</h3>
+        <p>Téléphone : [+509 __ __ ____]<br>WhatsApp : [+509 __ __ ____]</p>
+        <h3>Courriel</h3>
+        <p>[info@mushindojo.net]</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ CTA BANNER ============ -->
+  <!-- ============ BANNIÈRE CTA ============ -->
   <section class="section section-dark cta-banner">
     <div class="section-inner cta-inner reveal">
       <div class="cta-copy">
-        <p class="eyebrow eyebrow-light">Con Nosotros</p>
-        <h2>Experimentas El<br>Espíritu Del Samurai</h2>
+        <p class="eyebrow eyebrow-light">Avec Nous</p>
+        <h2>Vivez L'Esprit<br>Du Guerrier</h2>
         <p>
-          En <strong>[Nombre del Dojo]</strong> comprendemos que una de las piedras
-          angulares de nuestra disciplina es la defensa sin recurrir a la
-          agresión. A través de la práctica constante, cultivamos la capacidad
-          de mantener una postura tranquila y segura, física y mentalmente,
-          incluso en situaciones de conflicto.
+          Au <strong>Mushin Dojo</strong>, nous savons que l'une des pierres
+          angulaires de l'aïkido et du karaté est la défense sans recourir à
+          l'agression. À travers une pratique constante, nous cultivons la
+          capacité à rester calme et sûr de soi, physiquement comme mentalement,
+          même en situation de conflit.
         </p>
       </div>
       <svg viewBox="0 0 100 100" class="enso enso-cta" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none"/></svg>
       <div class="cta-side">
-        <h3>Planes Y<br>Tarifas</h3>
-        <a href="#precios" class="btn btn-primary">Más Información</a>
+        <h3>Tarifs Et<br>Abonnements</h3>
+        <a href="#contacto" class="btn btn-primary">En Savoir Plus</a>
       </div>
     </div>
   </section>
 
-  <!-- ============ PROGRAMS ============ -->
+  <!-- ============ PROGRAMMES ============ -->
   <section class="section programs" id="programas">
     <div class="section-inner reveal">
-      <p class="eyebrow center">Programas de</p>
-      <h2 class="center">Formación</h2>
-      <p class="section-lede center">Ofrecemos programas diseñados para cada etapa de la vida:</p>
+      <p class="eyebrow center">Programmes de</p>
+      <h2 class="center">Formation</h2>
+      <p class="section-lede center">Des cours d'aikido et de karaté du lundi au samedi, adaptés à chaque étape de la vie :</p>
 
       <div class="programs-grid">
-        <!-- CUSTOMIZE: program names / photos per client offering -->
+        <!-- CUSTOMIZE: ajuster horaires précis une fois communiqués par le client -->
         <article class="program-card">
-          <div class="photo-placeholder">Foto — clase infantil</div>
-          <h3>[Programa] Infantil</h3>
-          <a href="#" class="link-arrow">Saber Más &rarr;</a>
+          <div class="photo-placeholder">Photo — cours enfants</div>
+          <h3>Aikido Enfants</h3>
+          <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
         </article>
         <article class="program-card">
-          <div class="photo-placeholder">Foto — clase de adultos</div>
-          <h3>[Programa] Adultos</h3>
-          <a href="#" class="link-arrow">Saber Más &rarr;</a>
+          <div class="photo-placeholder">Photo — cours adultes</div>
+          <h3>Aikido Adultes</h3>
+          <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
         </article>
         <article class="program-card">
-          <div class="photo-placeholder">Foto — armas / técnica avanzada</div>
-          <h3>[Programa Especial]</h3>
-          <a href="#" class="link-arrow">Saber Más &rarr;</a>
+          <div class="photo-placeholder">Photo — karaté enfants</div>
+          <h3>Karaté Enfants</h3>
+          <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
         </article>
         <article class="program-card">
-          <div class="photo-placeholder">Foto — disciplina complementaria</div>
-          <h3>[Disciplina Complementaria]</h3>
-          <a href="#" class="link-arrow">Saber Más &rarr;</a>
+          <div class="photo-placeholder">Photo — karaté adultes</div>
+          <h3>Karaté Adultes</h3>
+          <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ BENEFITS ============ -->
+  <!-- ============ ÉVÉNEMENTS ============ -->
+  <section class="section programs" id="evenements" style="background:var(--paper-dim);">
+    <div class="section-inner reveal">
+      <p class="eyebrow center">Nos</p>
+      <h2 class="center">Événements</h2>
+      <p class="section-lede center">Des rendez-vous réguliers pour approfondir la pratique et vivre l'esprit du dojo :</p>
+
+      <div class="programs-grid" style="grid-template-columns:repeat(3,1fr);">
+        <article class="program-card">
+          <div class="photo-placeholder">Photo — séminaire d'aïkido</div>
+          <h3>Séminaire Aïkido</h3>
+          <p style="padding:0 1.1em;color:var(--stone);font-size:.9rem;">Un week-end intense pour approfondir les techniques d'aïkido avec Sensei Alejandro Dominguez.</p>
+          <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
+        </article>
+        <article class="program-card">
+          <div class="photo-placeholder">Photo — stage de karaté</div>
+          <h3>Stage Karaté</h3>
+          <p style="padding:0 1.1em;color:var(--stone);font-size:.9rem;">Ateliers pour enfants et adultes, alliant discipline et plaisir dans chaque geste.</p>
+          <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
+        </article>
+        <article class="program-card">
+          <div class="photo-placeholder">Photo — camp d'été</div>
+          <h3>Camp d'Été</h3>
+          <p style="padding:0 1.1em;color:var(--stone);font-size:.9rem;">Une immersion de plusieurs jours pour vivre l'esprit martial et créer des liens forts.</p>
+          <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BÉNÉFICES ============ -->
   <section class="section benefits">
     <div class="section-inner two-col reveal">
       <div class="photo-frame">
-        <div class="photo-placeholder">Foto — grupo entrenando</div>
+        <div class="photo-placeholder">Photo — groupe à l'entraînement</div>
       </div>
       <div>
-        <h2><span class="leaf" aria-hidden="true">&#127807;</span> Beneficios de [Arte Marcial]</h2>
-        <p class="body-copy">[Arte marcial] es más que una disciplina física — transforma a quienes lo practican:</p>
+        <h2><span class="leaf" aria-hidden="true">&#127807;</span> Bénéfices de l'Aikido et du Karaté</h2>
+        <p class="body-copy">L'aïkido et le karaté sont bien plus que des disciplines physiques — ils transforment ceux qui les pratiquent :</p>
         <ul class="benefits-list">
-          <li>Mejora la condición física y la salud integral</li>
-          <li>Desarrolla disciplina, concentración y autocontrol</li>
-          <li>Fortalece la confianza y la seguridad personal</li>
-          <li>Enseña defensa personal sin recurrir a la violencia</li>
-          <li>Fomenta valores de respeto, armonía y convivencia pacífica</li>
-          <li>Reduce el estrés y mejora el bienestar emocional</li>
+          <li>Améliore la condition physique et la santé globale</li>
+          <li>Développe la discipline, la concentration et la maîtrise de soi</li>
+          <li>Renforce la confiance et la sécurité personnelle</li>
+          <li>Enseigne la défense personnelle sans recourir à la violence</li>
+          <li>Favorise des valeurs de respect, d'harmonie et de vie en commun pacifique</li>
+          <li>Réduit le stress et améliore le bien-être émotionnel</li>
         </ul>
         <div class="badge-row">
-          <div class="badge"><span class="badge-icon">&#129354;</span>Autodisciplina</div>
-          <div class="badge"><span class="badge-icon">&#128170;</span>Fuerza</div>
-          <div class="badge"><span class="badge-icon">&#128737;&#65039;</span>Defensa eficaz</div>
+          <div class="badge"><span class="badge-icon">&#129354;</span>Autodiscipline</div>
+          <div class="badge"><span class="badge-icon">&#128170;</span>Force</div>
+          <div class="badge"><span class="badge-icon">&#128737;&#65039;</span>Défense efficace</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ INSTRUCTORS ============ -->
+  <!-- ============ INSTRUCTEURS ============ -->
   <section class="section section-dark instructors" id="instructores">
     <div class="section-inner reveal">
-      <p class="eyebrow eyebrow-light center">Qué Piensan Nuestros</p>
-      <h2 class="center">Instructores?</h2>
+      <p class="eyebrow eyebrow-light center">Ce Que Pensent Nos</p>
+      <h2 class="center">Instructeurs ?</h2>
 
-      <!-- CUSTOMIZE: real instructors, quotes, photos, ranks -->
       <div class="testimonial testimonial-right">
         <div class="testimonial-copy">
-          <h3>&ldquo;[Frase representativa]&rdquo;</h3>
-          <p>[Cita del instructor sobre su filosofía de enseñanza — 2 a 3 líneas.]</p>
-          <p class="testimonial-name">[Nombre del Sensei]</p>
-          <p class="testimonial-rank">[Grado] Dan, Director</p>
+          <h3>&ldquo;Discipline et Harmonie Intérieure&rdquo;</h3>
+          <p>
+            Sensei Alejandro Dominguez a commencé l'aïkido à l'âge de 12 ans,
+            développant une passion profonde pour la discipline et la philosophie
+            martiale. Il enseigne avec patience et rigueur, guidant chaque élève
+            vers l'harmonie intérieure. Il pratique et enseigne au Mushin Dojo en
+            Haïti depuis 2010, et s'est formé de 2015 à 2019 auprès d'Aikikai RD
+            (République Dominicaine) aux côtés de maîtres japonais.
+          </p>
+          <p class="testimonial-name">Sensei Alejandro Dominguez</p>
+          <p class="testimonial-rank">Instructeur Principal, Aikido</p>
         </div>
-        <div class="testimonial-photo"><div class="photo-placeholder round">Foto</div></div>
+        <div class="testimonial-photo"><div class="photo-placeholder round">Photo</div></div>
       </div>
 
       <div class="testimonial testimonial-left">
-        <div class="testimonial-photo"><div class="photo-placeholder round">Foto</div></div>
+        <div class="testimonial-photo"><div class="photo-placeholder round">Photo</div></div>
         <div class="testimonial-copy">
-          <h3>&ldquo;[Frase representativa]&rdquo;</h3>
-          <p>[Cita del instructor — 1 a 2 líneas.]</p>
-          <p class="testimonial-name">[Nombre]</p>
-          <p class="testimonial-rank">[Grado] Dan, Sub Director</p>
+          <h3>&ldquo;[Phrase représentative à venir]&rdquo;</h3>
+          <!-- CUSTOMIZE: biographie de Worlkings Belotte à obtenir du client -->
+          <p>[Biographie et citation de Worlkings Belotte — instructeur co-listé sur le site actuel du dojo, détails à confirmer.]</p>
+          <p class="testimonial-name">Worlkings Belotte</p>
+          <p class="testimonial-rank">Instructeur, [Aikido / Karaté]</p>
         </div>
-      </div>
-
-      <div class="testimonial testimonial-right">
-        <div class="testimonial-copy">
-          <h3>&ldquo;[Frase representativa]&rdquo;</h3>
-          <p>[Cita del instructor — 2 a 3 líneas.]</p>
-          <p class="testimonial-name">[Nombre]</p>
-          <p class="testimonial-rank">[Grado] Dan, Instructor</p>
-        </div>
-        <div class="testimonial-photo"><div class="photo-placeholder round">Foto</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CONTACT FORM ============ -->
+  <!-- ============ HORAIRES ============ -->
+  <section class="section" id="horaires">
+    <div class="section-inner reveal">
+      <p class="eyebrow center">Nos</p>
+      <h2 class="center">Horaires</h2>
+      <p class="section-lede center">Les cours d'Aikido et de Karaté se tiennent du lundi au samedi, adaptés aux enfants et aux adultes, débutants ou confirmés.</p>
+      <div class="contact-card" style="max-width:640px;margin:0 auto;">
+        <!-- CUSTOMIZE: horaires précis à obtenir du client -->
+        <h3>Aikido</h3>
+        <p>[Jours et heures des cours d'aikido]</p>
+        <h3>Karaté</h3>
+        <p>[Jours et heures des cours de karaté]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FORMULAIRE DE CONTACT ============ -->
   <section class="section contact-form-section" id="contacto">
     <span class="kanji-watermark" aria-hidden="true">誠</span>
     <div class="section-inner two-col reveal">
       <div>
-        <p class="eyebrow">Escríbenos</p>
-        <h2>Reserva Tu Clase De Prueba</h2>
+        <p class="eyebrow">Écrivez-nous</p>
+        <h2>Réservez Votre Cours D'Essai</h2>
         <p class="body-copy">
-          Cuéntanos un poco sobre ti y te contactaremos para coordinar tu
-          primera visita al dojo. También puedes escribirnos directamente:
+          Parlez-nous un peu de vous et nous vous contacterons pour organiser
+          votre première visite au dojo. Vous pouvez aussi nous écrire
+          directement :
         </p>
         <p class="body-copy">
-          <strong>Tel:</strong> [+1 (___) ___-____] &nbsp;·&nbsp;
-          <strong>Email:</strong> [info@tudojo.com]
+          <strong>Tél :</strong> [+509 __ __ ____] &nbsp;·&nbsp;
+          <strong>Email :</strong> [info@mushindojo.net]
         </p>
       </div>
 
       <form id="contact-form" class="contact-form" novalidate>
         <div class="form-row">
-          <label for="cf-name">Nombre completo</label>
+          <label for="cf-name">Nom complet</label>
           <input type="text" id="cf-name" name="name" required autocomplete="name">
         </div>
         <div class="form-row form-row-split">
           <div>
-            <label for="cf-email">Correo electrónico</label>
+            <label for="cf-email">Courriel</label>
             <input type="email" id="cf-email" name="email" required autocomplete="email">
           </div>
           <div>
-            <label for="cf-phone">Teléfono</label>
+            <label for="cf-phone">Téléphone</label>
             <input type="tel" id="cf-phone" name="phone" autocomplete="tel">
           </div>
         </div>
         <div class="form-row">
-          <label for="cf-interest">Programa de interés</label>
+          <label for="cf-interest">Programme d'intérêt</label>
           <select id="cf-interest" name="interest">
-            <option value="Infantil">[Programa] Infantil</option>
-            <option value="Adultos">[Programa] Adultos</option>
-            <option value="Especial">[Programa Especial]</option>
-            <option value="No estoy seguro">No estoy seguro / Información general</option>
+            <option value="Aikido Enfants">Aikido Enfants</option>
+            <option value="Aikido Adultes">Aikido Adultes</option>
+            <option value="Karaté Enfants">Karaté Enfants</option>
+            <option value="Karaté Adultes">Karaté Adultes</option>
+            <option value="Non précisé">Pas encore sûr(e) / Information générale</option>
           </select>
         </div>
         <div class="form-row">
-          <label for="cf-message">Mensaje</label>
+          <label for="cf-message">Message</label>
           <textarea id="cf-message" name="message" rows="4" required></textarea>
         </div>
-        <!-- honeypot field to catch simple bots -->
+        <!-- champ piège à bots -->
         <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off">
-        <button type="submit" class="btn btn-primary btn-block" id="cf-submit">Enviar Mensaje</button>
+        <button type="submit" class="btn btn-primary btn-block" id="cf-submit">Envoyer le Message</button>
         <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -353,37 +397,38 @@
 
 </main>
 
-<!-- ============ FOOTER ============ -->
+<!-- ============ PIED DE PAGE ============ -->
 <footer class="site-footer">
   <div class="footer-inner reveal">
     <div class="footer-col">
-      <h3>Información</h3>
-      <p>&#128222; [+1 (___) ___-____]</p>
-      <p>&#128172; [+1 (___) ___-____] (WhatsApp)</p>
-      <p>&#9993;&#65039; [info@tudojo.com]</p>
+      <h3>Informations</h3>
+      <p>&#128222; [+509 __ __ ____]</p>
+      <p>&#128172; [+509 __ __ ____] (WhatsApp)</p>
+      <p>&#9993;&#65039; [info@mushindojo.net]</p>
     </div>
     <div class="footer-col footer-col-wide">
       <h3>Dojo Principal</h3>
-      <p>[Dirección completa, ciudad, país]</p>
-      <h4>Síguenos</h4>
+      <p>[Adresse complète, ville, Haïti]</p>
+      <h4>Suivez-nous</h4>
       <div class="social-row">
-        <!-- CUSTOMIZE: real social links -->
+        <!-- CUSTOMIZE: liens réels vers les réseaux sociaux du client -->
         <a href="#" aria-label="Facebook">FB</a>
         <a href="#" aria-label="Instagram">IG</a>
-        <a href="#" aria-label="YouTube">YT</a>
-        <a href="#" aria-label="WhatsApp">WA</a>
+        <a href="#" aria-label="X">X</a>
+        <a href="#" aria-label="TikTok">TT</a>
       </div>
     </div>
     <div class="footer-col">
-      <h3>Sobre Nosotros</h3>
+      <h3>À Propos</h3>
       <a href="#dojo">Dojo</a>
-      <a href="#historia">Historia</a>
-      <a href="#instructores">Instructores</a>
-      <a href="#programas">Programas</a>
-      <a href="#precios">Precios</a>
+      <a href="#historia">À Propos</a>
+      <a href="#programas">Programmes</a>
+      <a href="#instructores">Instructeurs</a>
+      <a href="#evenements">Événements</a>
+      <a href="#horaires">Horaires</a>
     </div>
   </div>
-  <p class="footer-copy">&copy; <span id="year"></span> [Nombre del Dojo]. Todos los derechos reservados.</p>
+  <p class="footer-copy">&copy; <span id="year"></span> Mushin Dojo. Tous droits réservés.</p>
 </footer>
 
 <script src="js/main.js"></script>
