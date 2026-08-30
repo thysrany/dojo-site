@@ -4,8 +4,8 @@
    ========================================================== */
 :root{
   /* Palette */
-  --ink:        #17181A;   /* near-black, dark section bg / body text */
-  --ink-soft:   #2A2B2E;   /* dark section secondary surfaces */
+  --ink:        #424143;   /* dojo charcoal, dark section bg / body text */
+  --ink-soft:   #555456;   /* dark section secondary surfaces */
   --paper:      #F7F5F1;   /* warm off-white, light section bg */
   --paper-dim:  #EFEBE3;   /* light section secondary surfaces */
   --vermilion:  #C6281C;   /* primary accent — torii red */
@@ -118,21 +118,15 @@ button{font-family:inherit;}
 .link-arrow{color:var(--vermilion);font-weight:700;font-size:.9rem;}
 .link-arrow:hover{color:var(--vermilion-deep);}
 
-/* Placeholder photo blocks — swap for <img> tags with real photos */
+/* Temporary/placeholder photos — swap the src for real client photos later.
+   Styled as real images now (object-fit:cover fills the frame). */
 .photo-placeholder{
   width:100%;height:100%;min-height:220px;
-  display:flex;align-items:center;justify-content:center;
-  text-align:center;font-size:.82rem;color:var(--stone);
-  background:repeating-linear-gradient(135deg,var(--paper-dim),var(--paper-dim) 10px,#fff 10px,#fff 20px);
-  border:1px dashed var(--mist);
-  padding:1rem;
-}
-.section-dark .photo-placeholder{
-  background:repeating-linear-gradient(135deg,var(--ink-soft),var(--ink-soft) 10px,#1f2023 10px,#1f2023 20px);
-  border-color:#3a3b3e;color:var(--on-dark-dim);
+  display:block;
+  object-fit:cover;
 }
 .photo-frame{aspect-ratio:4/5;overflow:hidden;border-radius:var(--radius);}
-.photo-placeholder.round{border-radius:50%;aspect-ratio:1/1;min-height:0;}
+.photo-placeholder.round{border-radius:50%;aspect-ratio:1/1;min-height:0;object-fit:cover;}
 
 /* ==========================================================
    ENSŌ — signature motif. A hand-drawn circle that "draws"
@@ -409,12 +403,12 @@ button{font-family:inherit;}
 .footer-col a:hover{color:var(--on-dark);}
 .social-row{display:flex;gap:12px;}
 .social-row a{
-  width:38px;height:38px;border-radius:50%;border:1px solid #3a3b3e;
+  width:38px;height:38px;border-radius:50%;border:1px solid #615f61;
   display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;
   transition:background .2s var(--ease), border-color .2s var(--ease);
 }
 .social-row a:hover{background:var(--vermilion);border-color:var(--vermilion);color:#fff;}
-.footer-copy{text-align:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid #2c2d30;font-size:.82rem;}
+.footer-copy{text-align:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid #58575a;font-size:.82rem;}
 
 /* ==========================================================
    SCROLL REVEAL

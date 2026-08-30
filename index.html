@@ -31,9 +31,11 @@
 <header class="site-header" id="site-header">
   <div class="nav-inner">
     <a href="#top" class="brand">
-      <!-- CUSTOMIZE: idéalement héberger le logo localement dans assets/ plutôt que le lien externe -->
+      <!-- CUSTOMIZE: hébergement temporaire du logo via mushindojo.net — si le
+           logo ne s'affiche pas (protection hotlink de leur hébergeur), il
+           faudra télécharger le fichier et le placer dans assets/logo.png -->
       <span class="brand-mark" aria-hidden="true">
-        <img src="https://mushindojo.net/wp-content/uploads/2026/06/mushin.png" alt="Logo Mushin Dojo" style="height:34px;width:auto;">
+        <img src="https://mushindojo.net/wp-content/uploads/2026/06/mushin.png" alt="Logo Mushin Dojo" style="height:34px;width:auto;" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'合',style:'font-family:var(--font-display);font-size:1.6rem;color:var(--vermilion);line-height:1;'}))">
       </span>
       <span class="brand-text">Mushin<br><em>Dojo</em></span>
     </a>
@@ -86,9 +88,8 @@
         <svg viewBox="0 0 100 100" class="enso enso-hero" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none"/></svg>
         <!-- CUSTOMIZE: remplacer par une vraie photo d'action (aikido ou karaté) -->
         <div class="photo-frame hero-photo">
-          <div class="photo-placeholder">
-            <span>Photo de technique en action<br>(1000×1200px suggéré)</span>
-          </div>
+          <!-- CUSTOMIZE: photo temporaire (Unsplash) — remplacer par une vraie photo du dojo -->
+          <img class="photo-placeholder" src="https://images.unsplash.com/photo-1688744248779-86696dae1a9f?q=80&w=800&h=1000&fit=crop" alt="Pratique d'aikido en action" loading="eager">
         </div>
       </div>
     </div>
@@ -131,11 +132,11 @@
       <button class="gallery-arrow gallery-prev" aria-label="Précédent">&#10094;</button>
       <div class="gallery-track" id="gallery-track">
         <!-- CUSTOMIZE: remplacer chaque photo par une vraie image du dojo -->
-        <div class="gallery-slide"><div class="photo-placeholder">Séminaire avec Sensei Ralph</div></div>
-        <div class="gallery-slide"><div class="photo-placeholder">Cours d'aikido</div></div>
-        <div class="gallery-slide"><div class="photo-placeholder">Cours de karaté</div></div>
-        <div class="gallery-slide"><div class="photo-placeholder">Examen de grade</div></div>
-        <div class="gallery-slide"><div class="photo-placeholder">Intérieur du dojo</div></div>
+        <div class="gallery-slide"><img class="photo-placeholder" src="https://images.unsplash.com/photo-1651760099754-e320818dd567?q=80&w=600&h=450&fit=crop" alt="Séminaire avec Sensei Ralph" loading="lazy"></div>
+        <div class="gallery-slide"><img class="photo-placeholder" src="https://images.unsplash.com/photo-1598300606161-4019d0dfec28?q=80&w=600&h=450&fit=crop" alt="Cours d'aikido" loading="lazy"></div>
+        <div class="gallery-slide"><img class="photo-placeholder" src="https://images.unsplash.com/photo-1602827114685-efbb2717da9f?q=80&w=600&h=450&fit=crop" alt="Cours de karaté" loading="lazy"></div>
+        <div class="gallery-slide"><img class="photo-placeholder" src="https://images.unsplash.com/photo-1514134177582-fec97bd28b7b?q=80&w=600&h=450&fit=crop" alt="Examen de grade" loading="lazy"></div>
+        <div class="gallery-slide"><img class="photo-placeholder" src="https://images.unsplash.com/photo-1525198104776-f6e8a873f9b7?q=80&w=600&h=450&fit=crop" alt="Intérieur du dojo" loading="lazy"></div>
       </div>
       <button class="gallery-arrow gallery-next" aria-label="Suivant">&#10095;</button>
       <div class="gallery-dots" id="gallery-dots"></div>
@@ -209,22 +210,22 @@
       <div class="programs-grid">
         <!-- CUSTOMIZE: ajuster horaires précis une fois communiqués par le client -->
         <article class="program-card">
-          <div class="photo-placeholder">Photo — cours enfants</div>
+          <img class="photo-placeholder" src="https://images.unsplash.com/photo-1467197894731-a3ec7e0d7cb8?q=80&w=500&h=400&fit=crop" alt="Cours d'aikido pour enfants" loading="lazy">
           <h3>Aikido Enfants</h3>
           <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
         </article>
         <article class="program-card">
-          <div class="photo-placeholder">Photo — cours adultes</div>
+          <img class="photo-placeholder" src="https://images.unsplash.com/photo-1685858562419-61ee45b7e79e?q=80&w=500&h=400&fit=crop" alt="Cours d'aikido pour adultes" loading="lazy">
           <h3>Aikido Adultes</h3>
           <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
         </article>
         <article class="program-card">
-          <div class="photo-placeholder">Photo — karaté enfants</div>
+          <img class="photo-placeholder" src="https://images.unsplash.com/photo-1611836983443-2a73cb1e05c4?q=80&w=500&h=400&fit=crop" alt="Cours de karaté pour enfants" loading="lazy">
           <h3>Karaté Enfants</h3>
           <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
         </article>
         <article class="program-card">
-          <div class="photo-placeholder">Photo — karaté adultes</div>
+          <img class="photo-placeholder" src="https://images.unsplash.com/photo-1697469495032-b67aafe7d0f3?q=80&w=500&h=400&fit=crop" alt="Cours de karaté pour adultes" loading="lazy">
           <h3>Karaté Adultes</h3>
           <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
         </article>
@@ -241,19 +242,19 @@
 
       <div class="programs-grid" style="grid-template-columns:repeat(3,1fr);">
         <article class="program-card">
-          <div class="photo-placeholder">Photo — séminaire d'aïkido</div>
+          <img class="photo-placeholder" src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=500&h=400&fit=crop" alt="Séminaire d'aïkido" loading="lazy">
           <h3>Séminaire Aïkido</h3>
           <p style="padding:0 1.1em;color:var(--stone);font-size:.9rem;">Un week-end intense pour approfondir les techniques d'aïkido avec Sensei Alejandro Dominguez.</p>
           <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
         </article>
         <article class="program-card">
-          <div class="photo-placeholder">Photo — stage de karaté</div>
+          <img class="photo-placeholder" src="https://images.unsplash.com/photo-1616447285757-3d0084ebd43b?q=80&w=500&h=400&fit=crop" alt="Stage de karaté" loading="lazy">
           <h3>Stage Karaté</h3>
           <p style="padding:0 1.1em;color:var(--stone);font-size:.9rem;">Ateliers pour enfants et adultes, alliant discipline et plaisir dans chaque geste.</p>
           <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
         </article>
         <article class="program-card">
-          <div class="photo-placeholder">Photo — camp d'été</div>
+          <img class="photo-placeholder" src="https://images.unsplash.com/photo-1534247555660-d4af46712d27?q=80&w=500&h=400&fit=crop" alt="Camp d'été" loading="lazy">
           <h3>Camp d'Été</h3>
           <p style="padding:0 1.1em;color:var(--stone);font-size:.9rem;">Une immersion de plusieurs jours pour vivre l'esprit martial et créer des liens forts.</p>
           <a href="#" class="link-arrow">En Savoir Plus &rarr;</a>
@@ -266,7 +267,7 @@
   <section class="section benefits">
     <div class="section-inner two-col reveal">
       <div class="photo-frame">
-        <div class="photo-placeholder">Photo — groupe à l'entraînement</div>
+        <img class="photo-placeholder" src="https://images.unsplash.com/photo-1688744248782-eb3194911ade?q=80&w=700&h=560&fit=crop" alt="Groupe à l'entraînement" loading="lazy">
       </div>
       <div>
         <h2><span class="leaf" aria-hidden="true">&#127807;</span> Bénéfices de l'Aikido et du Karaté</h2>
@@ -308,11 +309,11 @@
           <p class="testimonial-name">Sensei Alejandro Dominguez</p>
           <p class="testimonial-rank">Instructeur Principal, Aikido</p>
         </div>
-        <div class="testimonial-photo"><div class="photo-placeholder round">Photo</div></div>
+        <div class="testimonial-photo"><img class="photo-placeholder round" src="https://images.unsplash.com/photo-1601850877133-22a8f2aad2ae?q=80&w=300&h=300&fit=crop" alt="Sensei Alejandro Dominguez" loading="lazy"></div>
       </div>
 
       <div class="testimonial testimonial-left">
-        <div class="testimonial-photo"><div class="photo-placeholder round">Photo</div></div>
+        <div class="testimonial-photo"><img class="photo-placeholder round" src="https://images.unsplash.com/photo-1560631820-9e677e8ba3af?q=80&w=300&h=300&fit=crop" alt="Worlkings Belotte" loading="lazy"></div>
         <div class="testimonial-copy">
           <h3>&ldquo;[Phrase représentative à venir]&rdquo;</h3>
           <!-- CUSTOMIZE: biographie de Worlkings Belotte à obtenir du client -->
