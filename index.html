@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  DOJO WEBSITE TEMPLATE — build notes for Rany / Idea 2 Visual
+  ============================================================
+  Search for "CUSTOMIZE" comments through this file — each one
+  marks something that should change per client:
+    - Dojo name, tagline, founder story
+    - Logo (assets/logo.svg or .png)
+    - Photos (assets/*.jpg — currently styled placeholders)
+    - Address / phone / WhatsApp / email
+    - Program names & descriptions
+    - Instructor names, ranks, quotes, photos
+    - Social links
+  Colors + fonts live as CSS custom properties at the top of
+  css/styles.css — change the palette there once, it cascades
+  everywhere (no per-section overrides to hunt down).
+
+  Contact form posts to /.netlify/functions/contact, which
+  sends the message through Resend. See README.md for setup.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shugyo Shin Dojo — Escuela de Artes Marciales</title>
+<meta name="description" content="Clases de artes marciales tradicionales. Defensa personal, disciplina y valores para niños, jóvenes y adultos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="site-header" id="site-header">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <!-- CUSTOMIZE: replace with client logo (assets/logo.svg) -->
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100" class="enso enso-brand"><circle cx="50" cy="50" r="42" fill="none"/></svg>
+      </span>
+      <span class="brand-text">Shugyo Shin<br><em>Dojo</em></span>
+    </a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="#dojo">Dojo</a>
+      <a href="#historia">Historia</a>
+      <a href="#instructores">Instructores</a>
+      <a href="#programas">Programas</a>
+      <a href="#precios">Precios</a>
+      <a href="#contacto" class="nav-cta">Contacto</a>
+    </nav>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="dojo">
+    <span class="kanji-watermark" aria-hidden="true">道</span>
+    <div class="hero-inner reveal">
+      <div class="hero-copy">
+        <p class="eyebrow">Escuela de Artes Marciales Tradicionales</p>
+        <!-- CUSTOMIZE: dojo name -->
+        <h1>SHUGYO SHIN<br>DOJO</h1>
+        <p class="lede">
+          Clases en <strong>[Ciudad, País]</strong>. Defensa personal, disciplina
+          y valores para niños, jóvenes y adultos, en un espacio fiel a la
+          tradición marcial japonesa.
+        </p>
+        <p class="body-copy">
+          El <strong>[Nombre del Dojo]</strong> fue fundado en <strong>[mes, año]</strong> por
+          <strong>[Nombre del Fundador] Sensei</strong>, [grado] Dan y practicante
+          certificado por [organización matriz].
+        </p>
+        <p class="body-copy">
+          Somos <strong>dojo afiliado</strong> a <strong>[Federación / Hombu Dojo]</strong>,
+          lo que garantiza una enseñanza fiel al linaje original del arte.
+        </p>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn btn-primary">Solicitar Clase de Prueba</a>
+          <a href="#programas" class="btn btn-ghost">Ver Programas</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <svg viewBox="0 0 100 100" class="enso enso-hero" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none"/></svg>
+        <!-- CUSTOMIZE: replace with real action photo -->
+        <div class="photo-frame hero-photo">
+          <div class="photo-placeholder">
+            <span>Foto de técnica en acción<br>(1000×1200px sugerido)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VISION / AFFILIATION ============ -->
+  <section class="section section-dark vision" id="historia">
+    <div class="section-inner two-col reveal">
+      <div class="vision-emblem">
+        <!-- CUSTOMIZE: replace with client / federation emblem -->
+        <div class="emblem-circle">
+          <span>ESCUDO<br>/ EMBLEMA</span>
+        </div>
+      </div>
+      <div class="vision-copy">
+        <p class="eyebrow eyebrow-light">Nuestra Misión</p>
+        <h2>[Nombre de la Asociación]</h2>
+        <p>
+          La misión de <strong>[Nombre del Dojo / Asociación]</strong> es preservar
+          y difundir la práctica tradicional de <strong>[arte marcial]</strong> en
+          <strong>[país]</strong>, estableciendo normas y programas que garanticen
+          una formación completa a nivel físico, mental y espiritual.
+        </p>
+        <p>
+          Representamos oficialmente a nuestra comunidad ante <strong>[organización
+          matriz / Hombu Dojo]</strong>, asegurando que la enseñanza siga fielmente
+          el legado de <strong>[fundador del arte]</strong>.
+        </p>
+        <a href="#" class="btn btn-outline-light">Más Información</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="section gallery-section">
+    <div class="gallery reveal" id="gallery">
+      <button class="gallery-arrow gallery-prev" aria-label="Anterior">&#10094;</button>
+      <div class="gallery-track" id="gallery-track">
+        <!-- CUSTOMIZE: swap each placeholder for a real dojo photo -->
+        <div class="gallery-slide"><div class="photo-placeholder">Entrenamiento de armas</div></div>
+        <div class="gallery-slide"><div class="photo-placeholder">Clase infantil</div></div>
+        <div class="gallery-slide"><div class="photo-placeholder">Práctica de adultos</div></div>
+        <div class="gallery-slide"><div class="photo-placeholder">Examen de grado</div></div>
+        <div class="gallery-slide"><div class="photo-placeholder">Interior del dojo</div></div>
+      </div>
+      <button class="gallery-arrow gallery-next" aria-label="Siguiente">&#10095;</button>
+      <div class="gallery-dots" id="gallery-dots"></div>
+    </div>
+  </section>
+
+  <!-- ============ PHILOSOPHY + CONTACT STRIP ============ -->
+  <section class="section philosophy" id="filosofia">
+    <span class="kanji-watermark kanji-watermark-right" aria-hidden="true">心</span>
+    <div class="section-inner two-col reveal">
+      <div>
+        <h2 class="accent-heading">Nuestra Filosofía</h2>
+        <p class="body-copy">
+          En <strong>[Nombre del Dojo]</strong>, la práctica marcial se fundamenta en
+          la disciplina, el respeto y la búsqueda de la armonía interior. No es
+          solo defensa personal — es un camino de vida guiado por los principios
+          del <strong>Bushidō</strong>, el código del guerrero samurái.
+        </p>
+        <h3 class="virtues-title">Las siete virtudes del Bushidō</h3>
+        <ol class="virtues-list">
+          <li><strong>Gi (義)</strong> — Justicia o Rectitud</li>
+          <li><strong>Yu (勇)</strong> — Coraje</li>
+          <li><strong>Jin (仁)</strong> — Compasión</li>
+          <li><strong>Rei (礼)</strong> — Respeto, cortesía</li>
+          <li><strong>Makoto (誠)</strong> — Honestidad, sinceridad absoluta</li>
+          <li><strong>Meiyo (名誉)</strong> — Honor</li>
+          <li><strong>Chūgi (忠義)</strong> — Lealtad</li>
+        </ol>
+      </div>
+      <div class="contact-card">
+        <h3>Dojo Principal</h3>
+        <p>[Dirección completa, ciudad, país]</p>
+        <h3>Números de Contacto</h3>
+        <p>Teléfono: [+1 (___) ___-____]<br>WhatsApp: [+1 (___) ___-____]</p>
+        <h3>Correo Electrónico</h3>
+        <p>[info@tudojo.com]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BANNER ============ -->
+  <section class="section section-dark cta-banner">
+    <div class="section-inner cta-inner reveal">
+      <div class="cta-copy">
+        <p class="eyebrow eyebrow-light">Con Nosotros</p>
+        <h2>Experimentas El<br>Espíritu Del Samurai</h2>
+        <p>
+          En <strong>[Nombre del Dojo]</strong> comprendemos que una de las piedras
+          angulares de nuestra disciplina es la defensa sin recurrir a la
+          agresión. A través de la práctica constante, cultivamos la capacidad
+          de mantener una postura tranquila y segura, física y mentalmente,
+          incluso en situaciones de conflicto.
+        </p>
+      </div>
+      <svg viewBox="0 0 100 100" class="enso enso-cta" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none"/></svg>
+      <div class="cta-side">
+        <h3>Planes Y<br>Tarifas</h3>
+        <a href="#precios" class="btn btn-primary">Más Información</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROGRAMS ============ -->
+  <section class="section programs" id="programas">
+    <div class="section-inner reveal">
+      <p class="eyebrow center">Programas de</p>
+      <h2 class="center">Formación</h2>
+      <p class="section-lede center">Ofrecemos programas diseñados para cada etapa de la vida:</p>
+
+      <div class="programs-grid">
+        <!-- CUSTOMIZE: program names / photos per client offering -->
+        <article class="program-card">
+          <div class="photo-placeholder">Foto — clase infantil</div>
+          <h3>[Programa] Infantil</h3>
+          <a href="#" class="link-arrow">Saber Más &rarr;</a>
+        </article>
+        <article class="program-card">
+          <div class="photo-placeholder">Foto — clase de adultos</div>
+          <h3>[Programa] Adultos</h3>
+          <a href="#" class="link-arrow">Saber Más &rarr;</a>
+        </article>
+        <article class="program-card">
+          <div class="photo-placeholder">Foto — armas / técnica avanzada</div>
+          <h3>[Programa Especial]</h3>
+          <a href="#" class="link-arrow">Saber Más &rarr;</a>
+        </article>
+        <article class="program-card">
+          <div class="photo-placeholder">Foto — disciplina complementaria</div>
+          <h3>[Disciplina Complementaria]</h3>
+          <a href="#" class="link-arrow">Saber Más &rarr;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BENEFITS ============ -->
+  <section class="section benefits">
+    <div class="section-inner two-col reveal">
+      <div class="photo-frame">
+        <div class="photo-placeholder">Foto — grupo entrenando</div>
+      </div>
+      <div>
+        <h2><span class="leaf" aria-hidden="true">&#127807;</span> Beneficios de [Arte Marcial]</h2>
+        <p class="body-copy">[Arte marcial] es más que una disciplina física — transforma a quienes lo practican:</p>
+        <ul class="benefits-list">
+          <li>Mejora la condición física y la salud integral</li>
+          <li>Desarrolla disciplina, concentración y autocontrol</li>
+          <li>Fortalece la confianza y la seguridad personal</li>
+          <li>Enseña defensa personal sin recurrir a la violencia</li>
+          <li>Fomenta valores de respeto, armonía y convivencia pacífica</li>
+          <li>Reduce el estrés y mejora el bienestar emocional</li>
+        </ul>
+        <div class="badge-row">
+          <div class="badge"><span class="badge-icon">&#129354;</span>Autodisciplina</div>
+          <div class="badge"><span class="badge-icon">&#128170;</span>Fuerza</div>
+          <div class="badge"><span class="badge-icon">&#128737;&#65039;</span>Defensa eficaz</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTRUCTORS ============ -->
+  <section class="section section-dark instructors" id="instructores">
+    <div class="section-inner reveal">
+      <p class="eyebrow eyebrow-light center">Qué Piensan Nuestros</p>
+      <h2 class="center">Instructores?</h2>
+
+      <!-- CUSTOMIZE: real instructors, quotes, photos, ranks -->
+      <div class="testimonial testimonial-right">
+        <div class="testimonial-copy">
+          <h3>&ldquo;[Frase representativa]&rdquo;</h3>
+          <p>[Cita del instructor sobre su filosofía de enseñanza — 2 a 3 líneas.]</p>
+          <p class="testimonial-name">[Nombre del Sensei]</p>
+          <p class="testimonial-rank">[Grado] Dan, Director</p>
+        </div>
+        <div class="testimonial-photo"><div class="photo-placeholder round">Foto</div></div>
+      </div>
+
+      <div class="testimonial testimonial-left">
+        <div class="testimonial-photo"><div class="photo-placeholder round">Foto</div></div>
+        <div class="testimonial-copy">
+          <h3>&ldquo;[Frase representativa]&rdquo;</h3>
+          <p>[Cita del instructor — 1 a 2 líneas.]</p>
+          <p class="testimonial-name">[Nombre]</p>
+          <p class="testimonial-rank">[Grado] Dan, Sub Director</p>
+        </div>
+      </div>
+
+      <div class="testimonial testimonial-right">
+        <div class="testimonial-copy">
+          <h3>&ldquo;[Frase representativa]&rdquo;</h3>
+          <p>[Cita del instructor — 2 a 3 líneas.]</p>
+          <p class="testimonial-name">[Nombre]</p>
+          <p class="testimonial-rank">[Grado] Dan, Instructor</p>
+        </div>
+        <div class="testimonial-photo"><div class="photo-placeholder round">Foto</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT FORM ============ -->
+  <section class="section contact-form-section" id="contacto">
+    <span class="kanji-watermark" aria-hidden="true">誠</span>
+    <div class="section-inner two-col reveal">
+      <div>
+        <p class="eyebrow">Escríbenos</p>
+        <h2>Reserva Tu Clase De Prueba</h2>
+        <p class="body-copy">
+          Cuéntanos un poco sobre ti y te contactaremos para coordinar tu
+          primera visita al dojo. También puedes escribirnos directamente:
+        </p>
+        <p class="body-copy">
+          <strong>Tel:</strong> [+1 (___) ___-____] &nbsp;·&nbsp;
+          <strong>Email:</strong> [info@tudojo.com]
+        </p>
+      </div>
+
+      <form id="contact-form" class="contact-form" novalidate>
+        <div class="form-row">
+          <label for="cf-name">Nombre completo</label>
+          <input type="text" id="cf-name" name="name" required autocomplete="name">
+        </div>
+        <div class="form-row form-row-split">
+          <div>
+            <label for="cf-email">Correo electrónico</label>
+            <input type="email" id="cf-email" name="email" required autocomplete="email">
+          </div>
+          <div>
+            <label for="cf-phone">Teléfono</label>
+            <input type="tel" id="cf-phone" name="phone" autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="cf-interest">Programa de interés</label>
+          <select id="cf-interest" name="interest">
+            <option value="Infantil">[Programa] Infantil</option>
+            <option value="Adultos">[Programa] Adultos</option>
+            <option value="Especial">[Programa Especial]</option>
+            <option value="No estoy seguro">No estoy seguro / Información general</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="cf-message">Mensaje</label>
+          <textarea id="cf-message" name="message" rows="4" required></textarea>
+        </div>
+        <!-- honeypot field to catch simple bots -->
+        <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off">
+        <button type="submit" class="btn btn-primary btn-block" id="cf-submit">Enviar Mensaje</button>
+        <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-inner reveal">
+    <div class="footer-col">
+      <h3>Información</h3>
+      <p>&#128222; [+1 (___) ___-____]</p>
+      <p>&#128172; [+1 (___) ___-____] (WhatsApp)</p>
+      <p>&#9993;&#65039; [info@tudojo.com]</p>
+    </div>
+    <div class="footer-col footer-col-wide">
+      <h3>Dojo Principal</h3>
+      <p>[Dirección completa, ciudad, país]</p>
+      <h4>Síguenos</h4>
+      <div class="social-row">
+        <!-- CUSTOMIZE: real social links -->
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="YouTube">YT</a>
+        <a href="#" aria-label="WhatsApp">WA</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Sobre Nosotros</h3>
+      <a href="#dojo">Dojo</a>
+      <a href="#historia">Historia</a>
+      <a href="#instructores">Instructores</a>
+      <a href="#programas">Programas</a>
+      <a href="#precios">Precios</a>
+    </div>
+  </div>
+  <p class="footer-copy">&copy; <span id="year"></span> [Nombre del Dojo]. Todos los derechos reservados.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
