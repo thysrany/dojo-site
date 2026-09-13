@@ -153,7 +153,8 @@ button{font-family:inherit;}
 }
 .enso-brand circle{stroke-dashoffset:14 !important;animation:none !important;}
 .enso-brand{width:34px;height:34px;position:static;stroke-width:6;}
-.enso-cta{width:340px;height:340px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.16;stroke:var(--on-dark);}
+/* .enso-cta removed: the CTA banner now shows a real photo instead of the
+   decorative SVG ring — see .enso-cta-photo further down. */
 
 /* Kanji watermark — one meaningful glyph per section, not decoration */
 .kanji-watermark{
@@ -315,13 +316,19 @@ button{font-family:inherit;}
    ========================================================== */
 .cta-banner{text-align:center;}
 .cta-inner{
-  display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center;
+  display:grid;grid-template-columns:1.1fr .9fr .8fr;gap:32px;align-items:center;
   position:relative;text-align:left;
 }
 @media (max-width:860px){.cta-inner{grid-template-columns:1fr;text-align:center;}}
 .cta-side{display:flex;flex-direction:column;gap:1.2rem;align-items:flex-start;}
 @media (max-width:860px){.cta-side{align-items:center;}}
 .cta-side h3{font-size:clamp(1.6rem,3vw,2.1rem);}
+.enso-cta-photo{
+  width:100%;max-width:280px;height:auto;justify-self:center;
+  transition:transform .6s var(--ease);
+}
+.enso-cta-photo:hover{transform:scale(1.05);}
+@media (max-width:860px){.enso-cta-photo{max-width:220px;}}
 
 /* ==========================================================
    PROGRAMS
