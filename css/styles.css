@@ -382,10 +382,9 @@ button{font-family:inherit;}
 .benefits-list li::before{
   content:"✓";position:absolute;left:0;color:var(--vermilion);font-weight:700;
 }
-.leaf{color:var(--vermilion);font-style:normal;}
 .badge-row{display:flex;gap:28px;flex-wrap:wrap;margin-top:2rem;}
 .badge{display:flex;flex-direction:column;align-items:center;gap:.5em;font-weight:700;font-size:.9rem;color:var(--ink);}
-.badge-icon{font-size:1.8rem;}
+.badge-icon{color:var(--vermilion);display:inline-flex;align-items:center;justify-content:center;}
 
 /* ==========================================================
    INSTRUCTOR TESTIMONIALS

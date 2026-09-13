@@ -32,7 +32,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <!-- CUSTOMIZE: bump ?v=N on this file and js/main.js whenever CSS/JS
      changes, so GitHub Pages' CDN cache can't serve a stale copy. -->
-<link rel="stylesheet" href="css/styles.css?v=20">
+<link rel="stylesheet" href="css/styles.css?v=21">
 </head>
 <body>
 
@@ -279,7 +279,7 @@
         <img class="photo-placeholder" data-cms="benefices.image" data-cms-label="Photo" src="assets/karate-sparring.png" alt="Entraînement au combat en karaté" loading="lazy">
       </div>
       <div>
-        <h2><span class="leaf" aria-hidden="true">&#127807;</span> Bénéfices de l'Aikido et du Karaté</h2>
+        <h2>Bénéfices de l'Aikido et du Karaté</h2>
         <p class="body-copy" data-cms="benefices.texte_intro" data-cms-multiline data-cms-label="Texte d'intro">L'aïkido et le karaté sont bien plus que des disciplines physiques — ils transforment ceux qui les pratiquent :</p>
         <ul class="benefits-list reveal-stagger" data-cms-repeat="benefices.liste" data-cms-label="Liste des bénéfices">
           <li class="stagger-item" data-cms-item data-cms-field="texte">Améliore la condition physique et la santé globale</li>
@@ -290,9 +290,21 @@
           <li class="stagger-item" data-cms-item data-cms-field="texte">Réduit le stress et améliore le bien-être émotionnel</li>
         </ul>
         <div class="badge-row">
-          <div class="badge"><span class="badge-icon">&#129354;</span>Autodiscipline</div>
-          <div class="badge"><span class="badge-icon">&#128170;</span>Force</div>
-          <div class="badge"><span class="badge-icon">&#128737;&#65039;</span>Défense efficace</div>
+          <div class="badge">
+            <span class="badge-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg>
+            </span>Autodiscipline
+          </div>
+          <div class="badge">
+            <span class="badge-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+            </span>Force
+          </div>
+          <div class="badge">
+            <span class="badge-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z"/></svg>
+            </span>Défense efficace
+          </div>
         </div>
       </div>
     </div>
@@ -448,7 +460,7 @@
   <p class="footer-copy">&copy; <span id="year"></span> Mushin Dojo. Tous droits réservés.</p>
 </footer>
 
-<script src="js/main.js?v=20"></script>
+<script src="js/main.js?v=21"></script>
 <!-- CMS: rempli automatiquement le contenu publié via le panneau d'édition.
      cms.js doit être copié depuis ~/code/fuc-cms/cms.js vers ce dossier. -->
 <script src="cms.js"
