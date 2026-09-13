@@ -21,7 +21,7 @@
   --font-body: 'Zen Kaku Gothic New', sans-serif;
 
   /* Rhythm */
-  --section-pad: clamp(64px, 9vw, 128px);
+  --section-pad: clamp(40px, 6vw, 88px);
   --gutter: clamp(20px, 5vw, 64px);
   --radius: 4px;
   --ease: cubic-bezier(.4,0,.2,1);
