@@ -16,4 +16,4 @@ git push
 
 echo ""
 echo "Poussé sur GitHub avec le message : \"$MSG\""
-echo "Netlify va redéployer automatiquement dans les prochaines minutes."
+echo "GitHub Pages va publier ce changement automatiquement dans les prochaines minutes."

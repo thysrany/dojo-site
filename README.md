@@ -1,97 +1,105 @@
-# Dojo Website Template
+# Mushin Dojo — Website
 
-A reusable martial-arts / dojo website template (based on the structure of
-aikikaird.org), built as plain HTML/CSS/JS so it's easy to reskin per client.
-Push it to GitHub as normal, deploy it on Netlify.
+A martial-arts dojo website (Aikido + Karaté), client-editable through a
+CMS panel. Everything runs on just two services: **GitHub** (hosting,
+via GitHub Pages) and **Supabase** (the CMS content and the contact
+form's email-sending function). No Netlify, no Vercel.
 
 ## Files
 
 ```
 dojo-site/
-├── index.html                     ← all page content & structure
-├── css/styles.css                 ← design tokens (colors/fonts) + layout + animations
-├── js/main.js                     ← nav, scroll reveal, gallery, contact form logic
-├── netlify/functions/contact.js   ← serverless function: form → Resend email
-├── netlify.toml                   ← Netlify build/functions config
-└── assets/                        ← drop client logo + photos here
+├── index.html                    ← all page content & structure, CMS-marked
+├── css/styles.css                ← design tokens (colors/fonts) + layout + animations
+├── js/main.js                    ← nav, scroll reveal, gallery, contact form logic
+├── cms.js                        ← CMS runtime (copied in manually, not tracked by setup script)
+├── supabase/functions/contact/   ← Supabase Edge Function: form → Resend email
+├── push.sh                       ← commit + push helper
+├── download-assets.sh            ← pulls the two real client images
+└── assets/                       ← logo + real photos live here once downloaded
 ```
 
-## 1. Customize per client
+## 1. Hosting: GitHub Pages
 
-Open `index.html` and search for `CUSTOMIZE` — each comment marks a spot
-that needs client-specific content:
-- Dojo name, founder story, affiliation/federation text
-- Logo (replace the inline SVG placeholder in the header with
-  `<img src="assets/logo.svg" alt="...">`)
-- Photos — every `<div class="photo-placeholder">` is a stand-in. Replace
-  with an `<img>` tag pointing to a real photo in `assets/`.
-- Address, phone, WhatsApp, email (appears in 3 places: philosophy section,
-  contact form section, footer)
-- Program cards, instructor names/ranks/quotes, social links
+Much simpler than Netlify — no separate account to link, just a setting
+in the repo itself.
 
-Open `css/styles.css` and edit the `:root` block at the top to change the
-palette or fonts for the whole site in one place — nothing else needs to
-change.
+1. Push this repo to GitHub as usual (`bash push.sh "message"`).
+2. On GitHub, go to the repo → **Settings → Pages**.
+3. Under "Build and deployment," set **Source** to "Deploy from a
+   branch," branch **main**, folder **/ (root)**.
+4. Save. GitHub gives you a URL like
+   `https://thysrany.github.io/dojo-site/` within a minute or two.
+5. Every future `git push` (via `push.sh`) updates the live site
+   automatically — no extra step needed.
 
-## 2. Animations already included
+A custom domain can be added later under the same Pages settings.
 
-- Scroll-reveal fade/rise on every major section (`.reveal` class,
-  IntersectionObserver-driven, respects `prefers-reduced-motion`)
-- An animated "ensō" (hand-drawn zen circle) that draws itself on page load
-  — used behind the hero photo and the CTA banner as the site's signature
-  visual motif
-- Smooth mobile nav open/close
-- Gallery carousel with swipe/scroll, arrow buttons, and dot indicators
-- Button hover lifts, nav underline hovers
+## 2. The CMS
 
-## 3. Deploying: GitHub → Netlify
+`index.html` has `data-cms="section.champ"` attributes on the elements
+the client can edit — text, images, and a few repeating lists (programs,
+events, benefits, instructors, schedule). The text already in the HTML
+is the fallback shown if the CMS backend is ever unreachable, so it
+should always stay real content, never be emptied out.
 
-Keep working exactly like you already do — push to a GitHub repo. Netlify
-connects to that repo and auto-deploys on every push, and it also runs the
-serverless function in `netlify/functions/contact.js`, so the static site
-and the contact-form backend live in one place.
+`cms.js` is the runtime script that fills those elements in from the
+published content. It's **not written by `setup-dojo-site.sh`** — copy
+it in manually from `~/code/fuc-cms/cms.js` any time it's updated:
 
-Netlify's free plan is a good fit here: $0/month, no expiry, and — unlike
-some competitors — its terms explicitly allow commercial client sites, not
-just personal projects. The free tier's monthly allowance (300 credits,
-roughly 15 GB of traffic plus generous function calls) is far more than a
-single dojo site with a contact form will use.
+```
+cp ~/code/fuc-cms/cms.js dojo-site/
+```
 
-1. Push this folder to a GitHub repo (new repo, or a folder in an existing
-   one — just make sure `index.html` sits at the root Netlify will deploy).
-2. Go to [netlify.com](https://netlify.com) → **Add new site → Import an
-   existing project** → connect GitHub and pick the repo. Netlify reads
-   `netlify.toml` automatically, so no build command setup is needed —
-   just confirm the publish directory is `.` (repo root).
-3. Go to **Site settings → Environment variables** and add:
-   - `RESEND_API_KEY` — your Resend API key
-   - `CONTACT_FROM` — a verified sender, e.g. `Dojo Web <web@tudojo.com>`
-   - `CONTACT_TO` — the inbox that should receive submissions, e.g.
-     `info@tudojo.com`
-4. Trigger a redeploy (or just push again) so the function picks up the
-   new environment variables.
-5. In [Resend](https://resend.com), verify the sending domain
-   (`tudojo.com`) so `CONTACT_FROM` is allowed to send — until it's
-   verified you can test with Resend's sandbox sender.
-6. Test the live form — a submission should land in `CONTACT_TO` within
-   seconds, with the visitor's email set as "reply-to" so you can respond
-   directly.
+Onboarding this client into the CMS (generating the SQL, creating their
+login, etc.) happens with the tools in `~/code/fuc-cms/` — see the
+Editable Site CMS project for that process.
 
-Custom domain: point it at Netlify the same way you'd normally do with
-Namecheap DNS — Netlify gives you the records under **Domain settings**.
+## 3. Contact form → email via Supabase Edge Function
 
-### Notes
+The form posts to a Supabase Edge Function (`supabase/functions/contact`)
+that sends through Resend — the same Supabase project the CMS already
+uses, so there's only one backend to manage.
 
-- The function does its own server-side validation (never trust client
-  input) and the form includes a hidden honeypot field (`_gotcha`) to
-  filter out simple bots.
-- If a project ever needs to stay on GitHub Pages specifically (no
-  Netlify), the contact form would need its backend hosted separately —
-  ask and I can wire up an alternative.
+### Deploy the function (one-time, from your Mac)
+
+You'll need the Supabase CLI installed (`brew install supabase/tap/supabase`
+if you don't have it yet). Then, from inside `dojo-site/`:
+
+```
+supabase functions deploy contact --no-verify-jwt --project-ref lerdkmzzdqcwxzjfmrpi
+```
+
+`--no-verify-jwt` is required — this function is called directly from
+the public page with no logged-in user, same as it was on Netlify.
+
+### Set the secrets (one-time)
+
+```
+supabase secrets set \
+  RESEND_API_KEY=your_resend_api_key \
+  CONTACT_FROM="Mushin Dojo <web@mushindojo.net>" \
+  CONTACT_TO=info@mushindojo.net \
+  --project-ref lerdkmzzdqcwxzjfmrpi
+```
+
+In [Resend](https://resend.com), verify the sending domain (`mushindojo.net`)
+so `CONTACT_FROM` is allowed to send — until it's verified you can test
+with Resend's sandbox sender.
+
+### Test
+
+Submit the form on the live site — a message should land in `CONTACT_TO`
+within seconds, with the visitor's email set as "reply-to" so you can
+reply directly.
+
+If you ever change the Resend key or the destination email, just re-run
+the `supabase secrets set` command — no redeploy of the function needed.
 
 ## 4. Local preview
 
-No build step for the static part — open `index.html` in a browser, or
-serve the folder with `npx serve .`. The contact form won't actually send
-until it's deployed to Netlify with the environment variables set (or you
-run `netlify dev` locally with a `.env` file).
+No build step — open `index.html` in a browser, or serve the folder
+with `npx serve .`. The CMS content won't load without `cms.js` present
+and a live Supabase connection; the contact form won't actually send
+until the Edge Function is deployed. Everything else (layout, animations,
+gallery) works fully offline.

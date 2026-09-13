@@ -92,7 +92,7 @@
     });
   }
 
-  // ---- Contact form -> Netlify function -> Resend ----
+  // ---- Contact form -> Supabase Edge Function -> Resend ----
   var form = document.getElementById("contact-form");
   var statusEl = document.getElementById("cf-status");
   var submitBtn = document.getElementById("cf-submit");
@@ -124,7 +124,7 @@
       setStatus("Envoi en cours...", "");
       submitBtn.disabled = true;
 
-      fetch("/.netlify/functions/contact", {
+      fetch("https://lerdkmzzdqcwxzjfmrpi.supabase.co/functions/v1/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
