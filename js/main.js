@@ -26,8 +26,8 @@
     });
   }
 
-  // ---- Scroll reveal ----
-  var revealEls = document.querySelectorAll(".reveal");
+  // ---- Scroll reveal (block-level, staggered groups, and the enso draw-on) ----
+  var revealEls = document.querySelectorAll(".reveal, .reveal-stagger, .enso");
   if ("IntersectionObserver" in window && revealEls.length) {
     var io = new IntersectionObserver(
       function (entries) {
@@ -101,10 +101,61 @@
     var nextBtn = document.querySelector(".gallery-next");
     if (prevBtn) prevBtn.addEventListener("click", function () {
       scrollToPage(Math.max(currentPage() - 1, 0));
+      restartAutoplay();
     });
     if (nextBtn) nextBtn.addEventListener("click", function () {
       scrollToPage(Math.min(currentPage() + 1, numPages - 1));
+      restartAutoplay();
     });
+    dots.forEach(function (dot) {
+      dot.addEventListener("click", restartAutoplay);
+    });
+
+    // ---- Autoplay: advance one set every 5s, pause on hover/touch/tab-hidden/off-screen ----
+    var galleryEl = document.getElementById("gallery");
+    var prefersReducedMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var autoplayTimer = null;
+    var autoplayEnabled = !prefersReducedMotion && numPages > 1;
+    var galleryVisible = true;
+
+    function advanceAutoplay() {
+      var next = currentPage() + 1;
+      scrollToPage(next >= numPages ? 0 : next);
+    }
+    function startAutoplay() {
+      if (!autoplayEnabled || autoplayTimer || !galleryVisible) return;
+      autoplayTimer = setInterval(advanceAutoplay, 5000);
+    }
+    function stopAutoplay() {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+    function restartAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    if (autoplayEnabled) {
+      startAutoplay();
+      if (galleryEl) {
+        galleryEl.addEventListener("mouseenter", stopAutoplay);
+        galleryEl.addEventListener("mouseleave", startAutoplay);
+        galleryEl.addEventListener("touchstart", stopAutoplay, { passive: true });
+      }
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) stopAutoplay(); else startAutoplay();
+      });
+      if ("IntersectionObserver" in window && galleryEl) {
+        var galleryIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            galleryVisible = entry.isIntersecting;
+            if (galleryVisible) startAutoplay(); else stopAutoplay();
+          });
+        }, { threshold: 0.2 });
+        galleryIO.observe(galleryEl);
+      }
+    }
   }
 
   // ---- Contact form -> Supabase Edge Function -> Resend ----

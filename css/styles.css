@@ -144,12 +144,14 @@ button{font-family:inherit;}
   stroke-dasharray:280;
   stroke-dashoffset:280;
   transform-origin:50% 50%;
+}
+.enso.in-view circle{
   animation:draw-enso 1.8s var(--ease) forwards;
-  animation-delay:.3s;
 }
 @keyframes draw-enso{
   to{stroke-dashoffset:14;}
 }
+.enso-brand circle{stroke-dashoffset:14 !important;animation:none !important;}
 .enso-brand{width:34px;height:34px;position:static;stroke-width:6;}
 .enso-cta{width:340px;height:340px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.16;stroke:var(--on-dark);}
 
@@ -420,7 +422,58 @@ button{font-family:inherit;}
 .footer-copy{text-align:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid #58575a;font-size:.82rem;}
 
 /* ==========================================================
-   SCROLL REVEAL
+   SCROLL REVEAL — block-level (unchanged) + staggered children
    ========================================================== */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
 .reveal.in-view{opacity:1;transform:translateY(0);}
+
+/* Staggered reveal: put .stagger-item on each direct child of a
+   .reveal-stagger container. Children fade/rise in one after another
+   instead of the whole block appearing at once. */
+.reveal-stagger .stagger-item{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
+}
+.reveal-stagger.in-view .stagger-item{opacity:1;transform:translateY(0);}
+.reveal-stagger.in-view .stagger-item:nth-child(1){transition-delay:.05s;}
+.reveal-stagger.in-view .stagger-item:nth-child(2){transition-delay:.15s;}
+.reveal-stagger.in-view .stagger-item:nth-child(3){transition-delay:.25s;}
+.reveal-stagger.in-view .stagger-item:nth-child(4){transition-delay:.35s;}
+.reveal-stagger.in-view .stagger-item:nth-child(5){transition-delay:.45s;}
+.reveal-stagger.in-view .stagger-item:nth-child(6){transition-delay:.55s;}
+.reveal-stagger.in-view .stagger-item:nth-child(7){transition-delay:.65s;}
+.reveal-stagger.in-view .stagger-item:nth-child(8){transition-delay:.75s;}
+.reveal-stagger.in-view .stagger-item:nth-child(9){transition-delay:.85s;}
+
+/* Testimonials get directional entrances instead of a flat rise */
+.testimonial.stagger-item{transform:translateY(0) translateX(-24px);}
+.testimonial-left.stagger-item{transform:translateY(0) translateX(24px);}
+.reveal-stagger.in-view .testimonial.stagger-item,
+.reveal-stagger.in-view .testimonial-left.stagger-item{transform:translateX(0);}
+
+/* Hero entrance — plays once on load since it's above the fold;
+   not scroll-triggered like everything else below it. */
+@keyframes hero-rise{
+  from{opacity:0;transform:translateY(22px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.hero-copy > *{opacity:0;animation:hero-rise .7s var(--ease) forwards;}
+.hero-copy > *:nth-child(1){animation-delay:.05s;}
+.hero-copy > *:nth-child(2){animation-delay:.15s;}
+.hero-copy > *:nth-child(3){animation-delay:.28s;}
+.hero-copy > *:nth-child(4){animation-delay:.4s;}
+.hero-copy > *:nth-child(5){animation-delay:.52s;}
+.hero-media{opacity:0;animation:hero-rise .8s var(--ease) forwards;animation-delay:.35s;}
+
+/* Image hover zoom — any framed photo gently scales on hover */
+.photo-frame,.program-card .photo-placeholder,.testimonial-photo,.gallery-slide{overflow:hidden;}
+.photo-frame img,.program-card img.photo-placeholder,.testimonial-photo img,.gallery-slide img{
+  transition:transform .6s var(--ease);
+}
+.photo-frame:hover img,.program-card:hover img.photo-placeholder,
+.testimonial-photo:hover img,.gallery-slide:hover img{transform:scale(1.07);}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-copy > *,.hero-media{animation:none !important;opacity:1 !important;transform:none !important;}
+  .reveal-stagger .stagger-item{transition:none !important;}
+}
