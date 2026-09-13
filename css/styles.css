@@ -396,7 +396,7 @@ button{font-family:inherit;}
 
 /* Photos that already have their own red circle + kanji baked in (like the
    generated instructor portraits) — show the full square, no extra frame. */
-.testimonial-photo-full{max-width:300px;margin:0 auto;}
+.testimonial-photo-full{max-width:400px;margin:0 auto;}
 .testimonial-photo-full .photo-placeholder{
   width:100%;aspect-ratio:1/1;border-radius:0;object-fit:contain;
 }
