@@ -374,8 +374,6 @@ button{font-family:inherit;}
   .testimonial-left{direction:ltr;}
 }
 .testimonial-copy h3{margin-bottom:.6em;}
-.testimonial-name{font-weight:700;margin-bottom:.1em;}
-.testimonial-rank{color:var(--vermilion);font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;}
 
 /* Photo + red backdrop circle + vertical kanji (used when a plain headshot
    needs the decorative treatment added). */
