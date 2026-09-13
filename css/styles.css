@@ -276,7 +276,7 @@ button{font-family:inherit;}
 /* ==========================================================
    GALLERY
    ========================================================== */
-.gallery-section{padding-top:var(--section-pad);padding-bottom:var(--section-pad);}
+.gallery-section{padding-top:var(--section-pad);padding-bottom:clamp(24px,3vw,48px);}
 .gallery-heading{margin-bottom:clamp(28px,5vw,48px);}
 .gallery{position:relative;max-width:1600px;margin:0 auto;padding:0;}
 .gallery-track{
@@ -314,7 +314,7 @@ button{font-family:inherit;}
 /* Sits right after the gallery, same light background with no color
    break between them — full section-pad on both sides stacked back to
    back read as one big empty gap, so tighten the top here specifically. */
-.philosophy{padding-top:clamp(32px,4.5vw,64px);}
+.philosophy{padding-top:clamp(16px,2vw,32px);}
 .virtues-title{margin-top:1.4em;}
 .virtues-list{color:var(--stone);}
 .virtues-list li{margin-bottom:.35em;}
