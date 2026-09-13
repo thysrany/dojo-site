@@ -39,6 +39,7 @@ body{
   background:var(--paper);
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 img{max-width:100%;display:block;}
 a{color:inherit;text-decoration:none;}
@@ -48,6 +49,7 @@ h1,h2,h3,h4{
   line-height:1.15;
   margin:0 0 .5em;
   letter-spacing:.01em;
+  overflow-wrap:break-word;
 }
 h1{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:800;}
 h2{font-size:clamp(1.9rem,4vw,2.9rem);}
@@ -95,6 +97,13 @@ button{font-family:inherit;}
 @media (max-width:860px){
   .two-col{grid-template-columns:1fr;}
 }
+/* Grid items default to min-width:auto, which sizes them to fit their
+   widest unbreakable content (e.g. a single long word in a heading) —
+   this can silently force a whole column wider than the viewport on
+   mobile even though the visible text would otherwise wrap fine. This
+   overrides that for every grid-based layout on the site. */
+.two-col > *, .hero-inner > *, .cta-inner > *, .testimonial > *,
+.testimonial-left > *, .footer-inner > *{min-width:0;}
 
 .btn{
   display:inline-block;
