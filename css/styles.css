@@ -230,7 +230,7 @@ button{font-family:inherit;}
 /* ==========================================================
    HERO
    ========================================================== */
-.hero{padding-top:clamp(56px,8vw,96px);}
+.hero{padding-top:clamp(56px,8vw,96px);overflow:hidden;}
 .hero-inner{
   max-width:1180px;margin:0 auto;
   display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,6vw,80px);
