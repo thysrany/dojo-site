@@ -96,6 +96,11 @@ button{font-family:inherit;}
 }
 @media (max-width:860px){
   .two-col{grid-template-columns:1fr;}
+  /* Same text-then-image consistency fix as the testimonials: these two
+     sections have the photo first in the HTML (for the desktop layout),
+     which made it appear before the text on mobile too. */
+  .vision-emblem{order:2;}
+  .benefits .photo-frame{order:2;}
 }
 /* Grid items default to min-width:auto, which sizes them to fit their
    widest unbreakable content (e.g. a single long word in a heading) —
