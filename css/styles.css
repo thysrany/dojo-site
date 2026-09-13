@@ -299,6 +299,17 @@ button{font-family:inherit;}
 .contact-card p{color:var(--stone);margin-bottom:1.4em;}
 .contact-card p:last-child{margin-bottom:0;}
 
+.schedule-list{max-width:640px;margin:0 auto;}
+.schedule-row{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:16px;flex-wrap:wrap;
+  padding:.85em 0;border-bottom:1px solid var(--mist);
+}
+.schedule-row:last-child{border-bottom:none;}
+.schedule-row .discipline{font-weight:700;color:var(--ink);min-width:100px;}
+.schedule-row .jour{color:var(--stone);flex:1;text-align:center;min-width:160px;}
+.schedule-row .heure{color:var(--vermilion);font-weight:700;}
+
 /* ==========================================================
    CTA BANNER
    ========================================================== */
