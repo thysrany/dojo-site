@@ -246,12 +246,7 @@ button{font-family:inherit;}
    VISION SECTION
    ========================================================== */
 .vision-emblem{display:flex;justify-content:center;}
-.emblem-circle{
-  width:min(320px,80vw);aspect-ratio:1/1;border-radius:50%;
-  border:2px solid var(--on-dark-dim);
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  color:var(--on-dark-dim);font-size:.85rem;letter-spacing:.06em;
-}
+.vision-emblem .photo-frame{width:100%;max-width:420px;}
 
 /* ==========================================================
    GALLERY
