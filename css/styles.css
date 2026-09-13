@@ -151,7 +151,6 @@ button{font-family:inherit;}
   to{stroke-dashoffset:14;}
 }
 .enso-brand{width:34px;height:34px;position:static;stroke-width:6;}
-.enso-hero{width:120%;height:120%;top:-10%;left:-10%;opacity:.9;z-index:0;}
 .enso-cta{width:340px;height:340px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.16;stroke:var(--on-dark);}
 
 /* Kanji watermark — one meaningful glyph per section, not decoration */
