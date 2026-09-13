@@ -340,7 +340,7 @@ button{font-family:inherit;}
 /* ==========================================================
    CTA BANNER
    ========================================================== */
-.cta-banner{text-align:center;}
+.cta-banner{text-align:center;padding-top:clamp(32px,4vw,56px);padding-bottom:clamp(32px,4vw,56px);}
 .cta-inner{
   display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
   position:relative;text-align:left;
