@@ -311,6 +311,10 @@ button{font-family:inherit;}
 /* ==========================================================
    PHILOSOPHY + CONTACT CARD
    ========================================================== */
+/* Sits right after the gallery, same light background with no color
+   break between them — full section-pad on both sides stacked back to
+   back read as one big empty gap, so tighten the top here specifically. */
+.philosophy{padding-top:clamp(32px,4.5vw,64px);}
 .virtues-title{margin-top:1.4em;}
 .virtues-list{color:var(--stone);}
 .virtues-list li{margin-bottom:.35em;}
