@@ -255,13 +255,13 @@ button{font-family:inherit;}
 .gallery-heading{margin-bottom:clamp(28px,5vw,48px);}
 .gallery{position:relative;max-width:1600px;margin:0 auto;padding:0;}
 .gallery-track{
-  display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
   padding-bottom:0;scrollbar-width:none;
 }
 .gallery-track::-webkit-scrollbar{display:none;}
 .gallery-slide{
-  flex:0 0 calc(100% / 3);aspect-ratio:4/3;scroll-snap-align:start;
-  border-radius:0;overflow:hidden;
+  flex:0 0 calc((100% - 32px) / 3);aspect-ratio:4/3;scroll-snap-align:start;
+  border-radius:var(--radius);overflow:hidden;
   min-width:280px;
 }
 .gallery-arrow{
