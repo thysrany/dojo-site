@@ -329,12 +329,15 @@ button{font-family:inherit;}
 .schedule-list{max-width:640px;margin:0 auto;}
 .schedule-row{
   display:flex;justify-content:space-between;align-items:center;
-  gap:16px;flex-wrap:wrap;
+  gap:12px;flex-wrap:nowrap;
   padding:.85em 0;border-bottom:1px solid var(--mist);
 }
 .schedule-row:last-child{border-bottom:none;}
-.schedule-row .discipline{font-weight:700;color:var(--ink);min-width:100px;}
-.schedule-row .heure{color:var(--vermilion);font-weight:700;}
+.schedule-row .discipline{font-weight:700;color:var(--ink);min-width:0;flex-shrink:1;}
+.schedule-row .heure{color:var(--vermilion);font-weight:700;min-width:0;flex-shrink:0;white-space:nowrap;}
+@media (max-width:400px){
+  .schedule-row{font-size:.92rem;gap:8px;}
+}
 
 /* ==========================================================
    CTA BANNER
