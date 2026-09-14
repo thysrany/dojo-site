@@ -170,7 +170,9 @@ button{font-family:inherit;}
 /* .enso-cta removed: the CTA banner now shows a real photo instead of the
    decorative SVG ring — see .enso-cta-photo further down. */
 
-/* Kanji watermark — one meaningful glyph per section, not decoration */
+/* Kanji watermark — one meaningful glyph per section, not decoration.
+   Slides in from whichever side it's positioned on, delayed slightly
+   so it appears just after the section's main content, not with it. */
 .kanji-watermark{
   position:absolute;
   font-family:var(--font-display);
@@ -178,15 +180,18 @@ button{font-family:inherit;}
   font-size:clamp(220px,32vw,460px);
   line-height:1;
   color:var(--ink);
-  opacity:.045;
   top:50%;left:-2%;
-  transform:translateY(-50%);
   z-index:0;
   pointer-events:none;
   user-select:none;
+  opacity:0;
+  transform:translateY(-50%) translateX(-80px);
+  transition:opacity 1.1s var(--ease) .3s, transform 1.1s var(--ease) .3s;
 }
-.kanji-watermark-right{left:auto;right:-2%;}
-.section-dark .kanji-watermark{color:var(--on-dark);opacity:.05;}
+.kanji-watermark.in-view{opacity:.045;transform:translateY(-50%) translateX(0);}
+.kanji-watermark-right{left:auto;right:-2%;transform:translateY(-50%) translateX(80px);}
+.kanji-watermark-right.in-view{transform:translateY(-50%) translateX(0);}
+.section-dark .kanji-watermark.in-view{opacity:.05;}
 
 /* ==========================================================
    HEADER / NAV
