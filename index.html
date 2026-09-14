@@ -56,7 +56,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <!-- CUSTOMIZE: bump ?v=N on this file and js/main.js whenever CSS/JS
      changes, so GitHub Pages' CDN cache can't serve a stale copy. -->
-<link rel="stylesheet" href="css/styles.css?v=29">
+<link rel="stylesheet" href="css/styles.css?v=30">
 </head>
 <body>
 
@@ -133,8 +133,9 @@
   <section class="section section-dark vision" id="historia">
     <div class="section-inner two-col reveal">
       <div class="vision-emblem">
-        <div class="photo-frame">
-          <img class="photo-placeholder" data-cms="histoire.photo" data-cms-label="Photo" src="assets/benefices-duo.png" alt="Sensei et élève, transmission entre générations" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1525198104776-f6e8a873f9b7?q=80&amp;w=700&amp;h=560&amp;fit=crop'">
+        <div class="photo-frame histoire-photo-stack">
+          <img class="histoire-shape" src="assets/histoire-shape.png" alt="" aria-hidden="true" loading="lazy">
+          <img class="photo-placeholder" data-cms="histoire.photo" data-cms-label="Photo" src="assets/histoire-people.png" alt="Sensei et élève, transmission entre générations" loading="lazy">
         </div>
       </div>
       <div class="vision-copy">
@@ -486,7 +487,7 @@
   <p class="footer-copy">&copy; <span id="year"></span> Mushin Dojo. Tous droits réservés.</p>
 </footer>
 
-<script src="js/main.js?v=29"></script>
+<script src="js/main.js?v=30"></script>
 <!-- CMS: rempli automatiquement le contenu publié via le panneau d'édition.
      cms.js doit être copié depuis ~/code/fuc-cms/cms.js vers ce dossier. -->
 <script src="cms.js"

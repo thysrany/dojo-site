@@ -27,7 +27,7 @@
   }
 
   // ---- Scroll reveal (block-level, staggered groups, and the enso draw-on) ----
-  var revealEls = document.querySelectorAll(".reveal, .reveal-stagger, .enso, .kanji-watermark, .cta-shape");
+  var revealEls = document.querySelectorAll(".reveal, .reveal-stagger, .enso, .kanji-watermark, .cta-shape, .histoire-shape");
   if ("IntersectionObserver" in window && revealEls.length) {
     var io = new IntersectionObserver(
       function (entries) {

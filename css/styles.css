@@ -139,7 +139,16 @@ button{font-family:inherit;}
   display:block;
   object-fit:cover;
 }
-.photo-frame{aspect-ratio:4/5;overflow:hidden;border-radius:var(--radius);width:100%;}
+.photo-frame{aspect-ratio:4/5;overflow:hidden;border-radius:var(--radius);width:100%;position:relative;}
+.histoire-shape{
+  position:absolute;top:50%;left:50%;
+  width:135%;height:auto;z-index:0;
+  transform:translate(-50%,-50%) translateY(70px);
+  opacity:0;
+  transition:opacity 1.1s var(--ease) .35s, transform 1.1s var(--ease) .35s;
+}
+.histoire-shape.in-view{opacity:1;transform:translate(-50%,-50%) translateY(0);}
+.histoire-photo-stack .photo-placeholder{position:relative;z-index:1;}
 .photo-placeholder.round{border-radius:50%;aspect-ratio:1/1;min-height:0;object-fit:cover;}
 
 /* ==========================================================
