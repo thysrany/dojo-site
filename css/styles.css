@@ -353,12 +353,18 @@ button{font-family:inherit;}
   position:relative;text-align:left;
 }
 @media (max-width:860px){.cta-inner{grid-template-columns:1fr;text-align:center;}}
-.enso-cta-photo{
-  width:100%;max-width:520px;height:auto;justify-self:center;
-  transition:transform .6s var(--ease);
+.cta-photo-stack{position:relative;width:100%;max-width:520px;justify-self:center;}
+.cta-shape{
+  position:absolute;top:50%;left:50%;
+  width:112%;height:auto;z-index:0;
+  transform:translate(-50%,-50%) translateY(70px);
+  opacity:0;
+  transition:opacity 1.1s var(--ease) .35s, transform 1.1s var(--ease) .35s;
 }
-.enso-cta-photo:hover{transform:scale(1.05);}
-@media (max-width:860px){.enso-cta-photo{max-width:340px;}}
+.cta-shape.in-view{opacity:1;transform:translate(-50%,-50%) translateY(0);}
+.cta-people{position:relative;z-index:1;width:100%;height:auto;display:block;transition:transform .6s var(--ease);}
+.cta-photo-stack:hover .cta-people{transform:scale(1.05);}
+@media (max-width:860px){.cta-photo-stack{max-width:340px;}}
 
 /* ==========================================================
    PROGRAMS
