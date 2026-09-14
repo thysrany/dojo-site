@@ -27,7 +27,7 @@
   }
 
   // ---- Scroll reveal (block-level, staggered groups, and the enso draw-on) ----
-  var revealEls = document.querySelectorAll(".reveal, .reveal-stagger, .enso, .kanji-watermark, .cta-shape, .histoire-shape");
+  var revealEls = document.querySelectorAll(".reveal, .reveal-stagger, .enso, .kanji-watermark");
   if ("IntersectionObserver" in window && revealEls.length) {
     var io = new IntersectionObserver(
       function (entries) {
@@ -43,6 +43,30 @@
     revealEls.forEach(function (el) { io.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add("in-view"); });
+  }
+
+  // ---- Background shapes (slide in behind a photo) — these need a much
+  // later, more-visible trigger point than the general reveal above, or
+  // they finish animating before the section is actually in view and the
+  // motion goes unnoticed. Require the shape's own container to be well
+  // into the viewport (its middle roughly at/past the vertical center)
+  // before starting, on top of the CSS transition-delay already on them.
+  var shapeEls = document.querySelectorAll(".histoire-shape, .cta-shape");
+  if ("IntersectionObserver" in window && shapeEls.length) {
+    var shapeIo = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            shapeIo.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.6, rootMargin: "0px 0px -20% 0px" }
+    );
+    shapeEls.forEach(function (el) { shapeIo.observe(el); });
+  } else {
+    shapeEls.forEach(function (el) { el.classList.add("in-view"); });
   }
 
   // ---- Gallery carousel (pages by sets of 3) ----

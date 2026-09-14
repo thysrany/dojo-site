@@ -145,7 +145,7 @@ button{font-family:inherit;}
   width:135%;height:auto;z-index:0;
   transform:translate(-50%,-50%) translateY(70px);
   opacity:0;
-  transition:opacity 1.1s var(--ease) .35s, transform 1.1s var(--ease) .35s;
+  transition:opacity 1.3s var(--ease) .15s, transform 1.3s var(--ease) .15s;
 }
 .histoire-shape.in-view{opacity:1;transform:translate(-50%,-50%) translateY(0);}
 .histoire-photo-stack .photo-placeholder{position:relative;z-index:1;}
@@ -368,7 +368,7 @@ button{font-family:inherit;}
   width:112%;height:auto;z-index:0;
   transform:translate(-50%,-50%) translateY(70px);
   opacity:0;
-  transition:opacity 1.1s var(--ease) .35s, transform 1.1s var(--ease) .35s;
+  transition:opacity 1.3s var(--ease) .15s, transform 1.3s var(--ease) .15s;
 }
 .cta-shape.in-view{opacity:1;transform:translate(-50%,-50%) translateY(0);}
 .cta-people{position:relative;z-index:1;width:100%;height:auto;display:block;transition:transform .6s var(--ease);}
