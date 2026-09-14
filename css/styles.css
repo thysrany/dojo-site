@@ -360,6 +360,13 @@ button{font-family:inherit;}
 }
 @media (max-width:980px){.programs-grid{grid-template-columns:repeat(2,1fr);}}
 @media (max-width:560px){.programs-grid{grid-template-columns:1fr;}}
+/* Événements uses 3 columns instead of 4 (was previously set via an
+   inline style, which silently blocked these same mobile breakpoints
+   from ever applying — inline styles always win over stylesheet rules,
+   media queries included). */
+.programs-grid-3{grid-template-columns:repeat(3,1fr);}
+@media (max-width:980px){.programs-grid-3{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.programs-grid-3{grid-template-columns:1fr;}}
 .program-card{
   background:#fff;border-radius:var(--radius);overflow:hidden;
   box-shadow:0 10px 30px -18px rgba(0,0,0,.25);
