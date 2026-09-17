@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  MUSHIN DOJO — page Instructeurs (séparée de la page d'accueil)
+  ============================================================
+  CUSTOMIZE: 2 des 4 profils (Dalean Pierre-Whidjy, Nick Widler
+  Normil) ont leur photo mais attendent encore un grade/rôle et
+  une bio — cherchez "CUSTOMIZE" ci-dessous. Leurs noms sont repris
+  des noms de fichiers fournis ; à confirmer que l'orthographe et
+  l'ordre nom/prénom sont corrects.
+
+  Chaque instructeur utilise deux images distinctes (photo +
+  forme rouge), superposées et animées indépendamment — même
+  technique que le hero, Notre Histoire, Bénéfices et la bannière
+  CTA sur la page d'accueil. Les 4 photos partagent la même forme
+  rouge (assets/cta-shape.png) plutôt qu'une forme par personne.
+-->
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos Instructeurs — Mushin Dojo</title>
+<meta name="description" content="Rencontrez les instructeurs du Mushin Dojo — leur parcours, leur grade et leur approche de l'aïkido et du karaté en Haïti.">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thysrany.github.io/dojo-site/instructeurs.html">
+<meta property="og:title" content="Nos Instructeurs — Mushin Dojo">
+<meta property="og:description" content="Rencontrez les instructeurs du Mushin Dojo — leur parcours, leur grade et leur approche de l'aïkido et du karaté en Haïti.">
+<meta property="og:image" content="https://thysrany.github.io/dojo-site/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nos Instructeurs — Mushin Dojo">
+<meta name="twitter:description" content="Rencontrez les instructeurs du Mushin Dojo — leur parcours, leur grade et leur approche de l'aïkido et du karaté en Haïti.">
+<meta name="twitter:image" content="https://thysrany.github.io/dojo-site/assets/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- CUSTOMIZE: garde le même ?v=N que index.html — les deux pages
+     partagent le même styles.css / main.js. -->
+<link rel="stylesheet" href="css/styles.css?v=41">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="site-header" id="site-header">
+  <div class="nav-inner">
+    <a href="index.html#top" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="assets/mushin-dojo-logo.png" alt="Logo Mushin Dojo" style="height:34px;width:auto;" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('span'),{textContent:'合',style:'font-family:var(--font-display);font-size:1.6rem;color:var(--vermilion);line-height:1;'}))">
+      </span>
+      <span class="brand-text">Mushin<br><em>Dojo</em></span>
+    </a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="index.html#dojo">Dojo</a>
+      <a href="index.html#historia">À Propos</a>
+      <a href="index.html#programas">Programmes</a>
+      <a href="instructeurs.html" class="nav-current">Instructeurs</a>
+      <a href="index.html#evenements">Événements</a>
+      <a href="index.html#horaires">Horaires</a>
+      <a href="index.html#contacto" class="nav-cta">Contact</a>
+    </nav>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ EN-TÊTE DE PAGE ============ -->
+  <section class="section section-dark instructors-page-header">
+    <div class="section-inner reveal">
+      <p class="eyebrow eyebrow-light center">Ceinture Noire &amp; Passion</p>
+      <h2 class="center">Nos Instructeurs</h2>
+      <p class="body-copy center" style="max-width:60ch;margin:0 auto;">
+        Le Mushin Dojo est guidé par des instructeurs qui vivent l'aïkido et
+        le karaté au quotidien — leur parcours, leur grade et leur approche
+        de l'enseignement.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ PROFILS ============ -->
+  <section class="section instructors-list">
+    <div class="section-inner">
+      <div class="instructeurs-repeat reveal-stagger" data-cms-repeat="instructeurs_page" data-cms-label="Instructeurs (page dédiée)">
+
+        <!-- Instructeur 1 — Sensei Alejandro Domínguez -->
+        <div class="testimonial testimonial-right stagger-item" data-cms-item>
+          <div class="testimonial-copy">
+            <h3><span data-cms-field="titre" data-cms-label="Titre de la citation">Tradition, Discipline et Rayonnement International</span></h3>
+            <p data-cms-field="bio" data-cms-multiline data-cms-label="Biographie">
+              Alejandro Domínguez Sensei est ceinture noire 6e dan d'Aikikai
+              et Shidoin de Sansuikai International. Fondateur et directeur
+              du Shugyo Shin Dojo Aikikai République Dominicaine, il totalise
+              plus de 30 ans de pratique et anime des séminaires
+              internationaux à travers l'Amérique et l'Europe. Formé
+              directement auprès de Maître Yoshimitsu Yamada Shihan (8e dan),
+              disciple d'O'Sensei Morihei Ueshiba, il représente l'Aikikai en
+              République Dominicaine depuis 2004 et apporte un soutien
+              technique au Mushin Dojo en Haïti. Pour lui, l'Aïkido est une
+              discipline martiale, éthique et culturelle qui transmet le
+              respect, la paix et le dépassement de soi.
+            </p>
+            <p class="testimonial-name" data-cms-field="nom" data-cms-label="Nom">Sensei Alejandro Domínguez</p>
+            <p class="testimonial-rank" data-cms-field="grade" data-cms-label="Grade / Rôle">6e Dan Aikikai — Directeur Technique, Shugyo Shin Dojo</p>
+          </div>
+          <div class="testimonial-photo">
+            <div class="photo-frame histoire-photo-stack" style="width:280px;max-width:280px;">
+              <img class="histoire-shape" src="assets/cta-shape.png" alt="" aria-hidden="true" loading="lazy">
+              <img class="photo-placeholder" data-cms-field="photo" data-cms-label="Photo" src="assets/instr-alejandro.png" alt="Sensei Alejandro Domínguez" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Instructeur 2 — Dalean Pierre-Whidjy. CUSTOMIZE: grade et bio à confirmer. -->
+        <div class="testimonial testimonial-left stagger-item" data-cms-item>
+          <div class="testimonial-photo">
+            <div class="photo-frame histoire-photo-stack" style="width:280px;max-width:280px;">
+              <img class="histoire-shape" src="assets/cta-shape.png" alt="" aria-hidden="true" loading="lazy">
+              <img class="photo-placeholder" data-cms-field="photo" data-cms-label="Photo" src="assets/instr-dalean.png" alt="Dalean Pierre-Whidjy" loading="lazy">
+            </div>
+          </div>
+          <div class="testimonial-copy">
+            <h3><span data-cms-field="titre" data-cms-label="Titre de la citation">[Phrase représentative à venir]</span></h3>
+            <p data-cms-field="bio" data-cms-multiline data-cms-label="Biographie">[Biographie à compléter dès que le texte sera fourni.]</p>
+            <p class="testimonial-name" data-cms-field="nom" data-cms-label="Nom">Dalean Pierre-Whidjy</p>
+            <p class="testimonial-rank" data-cms-field="grade" data-cms-label="Grade / Rôle">[Grade / Rôle]</p>
+          </div>
+        </div>
+
+        <!-- Instructeur 3 — Morpeau Fleming Luckner -->
+        <div class="testimonial testimonial-right stagger-item" data-cms-item>
+          <div class="testimonial-copy">
+            <h3><span data-cms-field="titre" data-cms-label="Titre de la citation">Honnêteté, Respect et Maîtrise de Soi</span></h3>
+            <p data-cms-field="bio" data-cms-multiline data-cms-label="Biographie">
+              Sensei Morpeau Fleming Luckner pratique le karaté depuis l'âge
+              de 15 ans et est aujourd'hui ceinture noire 2e dan. Son
+              enseignement repose sur les valeurs fondamentales de l'art
+              martial — honnêteté, respect, discipline et maîtrise de soi —
+              qu'il transmet avec autant de rigueur que de bienveillance.
+              Passionné par la formation des jeunes et des adultes, il
+              accompagne chaque élève dans sa progression technique,
+              physique et personnelle, faisant du karaté un véritable
+              chemin de développement humain.
+            </p>
+            <p class="testimonial-name" data-cms-field="nom" data-cms-label="Nom">Morpeau Fleming Luckner</p>
+            <p class="testimonial-rank" data-cms-field="grade" data-cms-label="Grade / Rôle">Ceinture Noire 2e Dan, Karaté</p>
+          </div>
+          <div class="testimonial-photo">
+            <div class="photo-frame histoire-photo-stack" style="width:280px;max-width:280px;">
+              <img class="histoire-shape" src="assets/cta-shape.png" alt="" aria-hidden="true" loading="lazy">
+              <img class="photo-placeholder" data-cms-field="photo" data-cms-label="Photo" src="assets/instr-morpeau.png" alt="Morpeau Fleming Luckner" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Instructeur 4 — Nick Widler Normil. CUSTOMIZE: grade et bio à confirmer. -->
+        <div class="testimonial testimonial-left stagger-item" data-cms-item>
+          <div class="testimonial-photo">
+            <div class="photo-frame histoire-photo-stack" style="width:280px;max-width:280px;">
+              <img class="histoire-shape" src="assets/cta-shape.png" alt="" aria-hidden="true" loading="lazy">
+              <img class="photo-placeholder" data-cms-field="photo" data-cms-label="Photo" src="assets/instr-nick.png" alt="Nick Widler Normil" loading="lazy">
+            </div>
+          </div>
+          <div class="testimonial-copy">
+            <h3><span data-cms-field="titre" data-cms-label="Titre de la citation">[Phrase représentative à venir]</span></h3>
+            <p data-cms-field="bio" data-cms-multiline data-cms-label="Biographie">[Biographie à compléter dès que le texte sera fourni.]</p>
+            <p class="testimonial-name" data-cms-field="nom" data-cms-label="Nom">Nick Widler Normil</p>
+            <p class="testimonial-rank" data-cms-field="grade" data-cms-label="Grade / Rôle">[Grade / Rôle]</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ PIED DE PAGE ============ -->
+<footer class="site-footer">
+  <div class="footer-inner reveal-stagger">
+    <div class="footer-col stagger-item">
+      <h3>Informations</h3>
+      <p>&#128222; <span data-cms="contact.telephone">+509 3249-7224</span></p>
+      <p>&#128172; <span data-cms="contact.whatsapp">+509 3249-7224</span> (WhatsApp)</p>
+      <p>&#9993;&#65039; <span data-cms="contact.email">contact@mushindojo.net</span></p>
+    </div>
+    <div class="footer-col footer-col-wide stagger-item">
+      <h3>Dojo Principal</h3>
+      <p><span data-cms="contact.adresse" data-cms-multiline>#68, Fragneauville 43, Delmas 75, Ouest, Haïti</span></p>
+      <h4>Suivez-nous</h4>
+      <div class="social-row">
+        <a href="https://www.facebook.com/share/19LcZT6uWp/?mibextid=wwXIfr" data-cms="reseaux.facebook" data-cms-attr="href" data-cms-label="Facebook" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H7.9V12h2.6V9.8c0-2.6 1.5-4 3.9-4 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/aikidohaiti_mushindojo?stkn=MWtyNmRiZjFqeHEzeQ%3D%3D&utm_source=qr" data-cms="reseaux.instagram" data-cms-attr="href" data-cms-label="Instagram" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col stagger-item">
+      <h3>À Propos</h3>
+      <a href="index.html#dojo">Dojo</a>
+      <a href="index.html#historia">À Propos</a>
+      <a href="index.html#programas">Programmes</a>
+      <a href="instructeurs.html">Instructeurs</a>
+      <a href="index.html#evenements">Événements</a>
+      <a href="index.html#horaires">Horaires</a>
+    </div>
+  </div>
+  <p class="footer-copy">&copy; <span id="year"></span> Mushin Dojo. Tous droits réservés.</p>
+</footer>
+
+<script src="js/main.js?v=41"></script>
+<script src="cms.js"
+        data-supabase-url="https://lerdkmzzdqcwxzjfmrpi.supabase.co"
+        data-anon-key="sb_publishable_1zii7sk9Kr2Jset0Y_0oAQ_w9KPOBej"
+        data-site="mushin-dojo"></script>
+</body>
+</html>

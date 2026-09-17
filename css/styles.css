@@ -231,6 +231,7 @@ button{font-family:inherit;}
   transition:width .25s var(--ease);
 }
 .main-nav a:not(.nav-cta):hover::after{width:100%;}
+.main-nav a.nav-current::after{width:100%;}
 .nav-cta{
   background:var(--ink);color:var(--paper);padding:.6em 1.4em;border-radius:999px;
   transition:background .25s var(--ease), transform .25s var(--ease);
