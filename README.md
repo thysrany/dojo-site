@@ -1,9 +1,9 @@
 # Mushin Dojo — Website
 
 A martial-arts dojo website (Aikido + Karaté), client-editable through a
-CMS panel. Everything runs on just two services: **GitHub** (hosting,
-via GitHub Pages) and **Supabase** (the CMS content and the contact
-form's email-sending function). No Netlify, no Vercel.
+CMS panel. Hosting and the CMS run on **GitHub Pages** + **Supabase**;
+the contact form emails through **Web3Forms** (no server needed for
+that part). No Netlify, no Vercel.
 
 ## Files
 
@@ -13,7 +13,7 @@ dojo-site/
 ├── css/styles.css                ← design tokens (colors/fonts) + layout + animations
 ├── js/main.js                    ← nav, scroll reveal, gallery, contact form logic
 ├── cms.js                        ← CMS runtime (copied in manually, not tracked by setup script)
-├── supabase/functions/contact/   ← Supabase Edge Function: form → Resend email
+├── supabase/functions/contact/   ← retired — see "Retired" note in section 3 below
 ├── push.sh                       ← commit + push helper
 ├── download-assets.sh            ← pulls the two real client images
 └── assets/                       ← logo + real photos live here once downloaded
@@ -55,51 +55,45 @@ Onboarding this client into the CMS (generating the SQL, creating their
 login, etc.) happens with the tools in `~/code/fuc-cms/` — see the
 Editable Site CMS project for that process.
 
-## 3. Contact form → email via Supabase Edge Function
+## 3. Contact form → email via Web3Forms
 
-The form posts to a Supabase Edge Function (`supabase/functions/contact`)
-that sends through Resend — the same Supabase project the CMS already
-uses, so there's only one backend to manage.
+The form posts directly to [Web3Forms](https://web3forms.com) from the
+browser — no backend to deploy, no domain verification. Web3Forms emails
+the submission straight to `contact@mushindojo.net`.
 
-### Deploy the function (one-time, from your Mac)
+### One-time setup
 
-You'll need the Supabase CLI installed (`brew install supabase/tap/supabase`
-if you don't have it yet). Then, from inside `dojo-site/`:
+1. Go to [web3forms.com](https://web3forms.com) and enter
+   `contact@mushindojo.net` — they'll email an **Access Key** to that
+   address (check that inbox once it exists).
+2. Open `js/main.js`, find `WEB3FORMS_ACCESS_KEY_HERE`, and paste the
+   real key in its place.
+3. Re-run `setup-dojo-site.sh` and push.
 
-```
-supabase functions deploy contact --no-verify-jwt --project-ref lerdkmzzdqcwxzjfmrpi
-```
-
-`--no-verify-jwt` is required — this function is called directly from
-the public page with no logged-in user, same as it was on Netlify.
-
-### Set the secrets (one-time)
-
-```
-supabase secrets set \
-  RESEND_API_KEY=your_resend_api_key \
-  CONTACT_FROM="Mushin Dojo <web@mushindojo.net>" \
-  CONTACT_TO=info@mushindojo.net \
-  --project-ref lerdkmzzdqcwxzjfmrpi
-```
-
-In [Resend](https://resend.com), verify the sending domain (`mushindojo.net`)
-so `CONTACT_FROM` is allowed to send — until it's verified you can test
-with Resend's sandbox sender.
+That's the whole setup — no secrets to manage on a server, nothing to
+redeploy later. If you ever want the notification email to go to a
+different address, just create a new key at web3forms.com for that
+address and swap it in the same spot.
 
 ### Test
 
-Submit the form on the live site — a message should land in `CONTACT_TO`
-within seconds, with the visitor's email set as "reply-to" so you can
-reply directly.
+Submit the form on the live site — a message should land in
+`contact@mushindojo.net` within seconds, with the visitor's email set
+as "reply-to" so you can reply directly from your inbox.
 
-If you ever change the Resend key or the destination email, just re-run
-the `supabase secrets set` command — no redeploy of the function needed.
+### Retired: Supabase Edge Function + Resend
+
+An earlier version of this form went through a Supabase Edge Function
+(`supabase/functions/contact`) that sent via Resend. That's no longer
+used — Resend's free plan hit its domain limit, and Web3Forms needs no
+domain verification at all, so it's simpler for this use case. The old
+Edge Function code is still in this repo for reference but isn't called
+by anything; it's safe to ignore or delete.
 
 ## 4. Local preview
 
 No build step — open `index.html` in a browser, or serve the folder
 with `npx serve .`. The CMS content won't load without `cms.js` present
 and a live Supabase connection; the contact form won't actually send
-until the Edge Function is deployed. Everything else (layout, animations,
-gallery) works fully offline.
+until the real Web3Forms access key is in place. Everything else
+(layout, animations, gallery) works fully offline.

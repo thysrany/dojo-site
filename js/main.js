@@ -182,7 +182,8 @@
     }
   }
 
-  // ---- Contact form -> Supabase Edge Function -> Resend ----
+  // ---- Contact form -> Web3Forms (emails contact@mushindojo.net directly,
+  // no domain verification or backend service needed) ----
   var form = document.getElementById("contact-form");
   var statusEl = document.getElementById("cf-status");
   var submitBtn = document.getElementById("cf-submit");
@@ -214,16 +215,26 @@
       setStatus("Envoi en cours...", "");
       submitBtn.disabled = true;
 
-      fetch("https://lerdkmzzdqcwxzjfmrpi.supabase.co/functions/v1/contact", {
+      // CUSTOMIZE: replace with the real key from web3forms.com once created
+      var payload = {
+        access_key: "c41b435b-1695-4628-920e-6e13ec704d3e",
+        subject: "Nouveau message — Mushin Dojo (" + data.interest + ")",
+        from_name: data.name,
+        name: data.name,
+        email: data.email,
+        telephone: data.phone,
+        "Programme d'intérêt": data.interest,
+        message: data.message
+      };
+
+      fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
       })
-        .then(function (res) {
-          if (!res.ok) throw new Error("Request failed");
-          return res.json();
-        })
-        .then(function () {
+        .then(function (res) { return res.json(); })
+        .then(function (result) {
+          if (!result.success) throw new Error(result.message || "Request failed");
           setStatus("Merci ! Nous avons bien reçu votre message et vous contacterons bientôt.", "ok");
           form.reset();
         })
