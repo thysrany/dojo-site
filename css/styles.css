@@ -432,6 +432,12 @@ button{font-family:inherit;}
      left/right class it has on desktop (was inconsistent before). */
   .testimonial-copy{order:1;}
   .testimonial-photo{order:2;}
+  /* Instructeurs page wants the opposite order (photo, then text) — these
+     selectors are more specific than the two above, so they win here
+     without touching the homepage's value cards, which share the same
+     .testimonial/.testimonial-copy/.testimonial-photo classes. */
+  .instructors-list .testimonial-photo{order:1;}
+  .instructors-list .testimonial-copy{order:2;}
 }
 .testimonial-copy h3{margin-bottom:.6em;}
 
