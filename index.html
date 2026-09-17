@@ -56,7 +56,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <!-- CUSTOMIZE: bump ?v=N on this file and js/main.js whenever CSS/JS
      changes, so GitHub Pages' CDN cache can't serve a stale copy. -->
-<link rel="stylesheet" href="css/styles.css?v=37">
+<link rel="stylesheet" href="css/styles.css?v=38">
 </head>
 <body>
 
@@ -450,6 +450,13 @@
         <button type="submit" class="btn btn-primary btn-block" id="cf-submit">Envoyer le Message</button>
         <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
       </form>
+
+      <div class="form-success" id="cf-success" role="status" aria-live="polite">
+        <svg class="form-success-icon" viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+        <h3>Message envoyé !</h3>
+        <p>Nous avons bien reçu votre message et vous contacterons très bientôt.</p>
+        <button type="button" class="link-arrow" id="cf-send-another">Envoyer un autre message</button>
+      </div>
     </div>
   </section>
 
@@ -490,7 +497,7 @@
   <p class="footer-copy">&copy; <span id="year"></span> Mushin Dojo. Tous droits réservés.</p>
 </footer>
 
-<script src="js/main.js?v=37"></script>
+<script src="js/main.js?v=38"></script>
 <!-- CMS: rempli automatiquement le contenu publié via le panneau d'édition.
      cms.js doit être copié depuis ~/code/fuc-cms/cms.js vers ce dossier. -->
 <script src="cms.js"

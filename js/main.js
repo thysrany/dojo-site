@@ -187,6 +187,8 @@
   var form = document.getElementById("contact-form");
   var statusEl = document.getElementById("cf-status");
   var submitBtn = document.getElementById("cf-submit");
+  var successEl = document.getElementById("cf-success");
+  var sendAnotherBtn = document.getElementById("cf-send-another");
 
   if (form) {
     form.addEventListener("submit", function (e) {
@@ -215,7 +217,6 @@
       setStatus("Envoi en cours...", "");
       submitBtn.disabled = true;
 
-      // CUSTOMIZE: replace with the real key from web3forms.com once created
       var payload = {
         access_key: "c41b435b-1695-4628-920e-6e13ec704d3e",
         subject: "Nouveau message — Mushin Dojo (" + data.interest + ")",
@@ -235,8 +236,15 @@
         .then(function (res) { return res.json(); })
         .then(function (result) {
           if (!result.success) throw new Error(result.message || "Request failed");
-          setStatus("Merci ! Nous avons bien reçu votre message et vous contacterons bientôt.", "ok");
           form.reset();
+          setStatus("", "");
+          // Swap the whole form out for an unmissable confirmation panel,
+          // instead of a small text line that's easy to scroll past.
+          form.style.display = "none";
+          if (successEl) {
+            successEl.classList.add("visible");
+            successEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
         })
         .catch(function () {
           setStatus("Nous n'avons pas pu envoyer votre message. Réessayez ou écrivez-nous directement par WhatsApp.", "err");
@@ -244,6 +252,14 @@
         .finally(function () {
           submitBtn.disabled = false;
         });
+    });
+  }
+
+  if (sendAnotherBtn && form && successEl) {
+    sendAnotherBtn.addEventListener("click", function () {
+      successEl.classList.remove("visible");
+      form.style.display = "";
+      form.scrollIntoView({ behavior: "smooth", block: "center" });
     });
   }
 
