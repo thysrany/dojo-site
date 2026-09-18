@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espace de gestion</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root{
+    --indigo:#2D17A9; --indigo-deep:#1A0D62; --ink:#12101c;
+    --paper:#F5F4FA; --white:#FFFFFF; --red:#DC080F; --blue:#006FC9;
+    --line:rgba(18,16,28,0.12); --ok:#0E8A3E;
+    --sans:'Archivo', 'Segoe UI', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; font-family:var(--sans); background:var(--paper); color:var(--ink); min-height:100vh; }
+  header{
+    background:var(--brand, var(--indigo)); color:#fff; padding:20px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  header h1{ font-size:1.05rem; font-weight:700; margin:0; }
+  header .site-name{ opacity:0.75; font-size:0.85rem; }
+  #signOutBtn{
+    background:transparent; border:1px solid rgba(255,255,255,0.4); color:#fff;
+    padding:6px 14px; border-radius:6px; font-size:0.85rem; cursor:pointer;
+  }
+  main{ max-width:760px; margin:0 auto; padding:28px 20px 80px; }
+
+  #loginView{
+    max-width:380px; margin:80px auto; background:#fff; padding:32px;
+    border-radius:10px; border:1px solid var(--line);
+  }
+  #loginView h2{ margin-top:0; font-size:1.2rem; }
+  #loginView p{ color:#565564; font-size:0.9rem; line-height:1.5; }
+  input[type=email], input[type=password], input[type=text], textarea{
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px;
+    font-family:inherit; font-size:0.95rem; margin-top:6px;
+  }
+  textarea{ min-height:90px; resize:vertical; }
+  label{ display:block; font-size:0.82rem; font-weight:600; color:#3a3850; margin-top:14px; }
+  button.primary{
+    background:var(--brand, var(--indigo)); color:#fff; border:none; padding:11px 20px;
+    border-radius:6px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:16px;
+  }
+  button.ghost{
+    background:transparent; border:1px solid var(--line); color:#3a3850; padding:8px 14px;
+    border-radius:6px; font-size:0.85rem; cursor:pointer;
+  }
+  button.link-danger{
+    background:none; border:none; color:var(--red); font-size:0.8rem; cursor:pointer;
+    padding:4px 0; text-decoration:underline;
+  }
+  #loginMsg{ font-size:0.85rem; margin-top:12px; color:var(--ok); }
+
+  .section-card{ background:#fff; border:1px solid var(--line); border-radius:10px; padding:22px 24px; margin-bottom:20px; }
+  .section-card h3{ margin:0 0 4px; font-size:1.05rem; display:flex; align-items:center; gap:10px; }
+  .save-state{ font-size:0.78rem; color:#8a889a; font-weight:500; }
+  .field-row{ margin-bottom:2px; }
+  .repeater-block{ margin-top:14px; }
+  .repeater-item{ border:1px dashed var(--line); border-radius:8px; padding:14px 16px; margin-top:10px; position:relative; }
+  .repeater-item-head{ display:flex; justify-content:space-between; align-items:center; }
+  .actions-row{ display:flex; gap:10px; align-items:center; margin-top:16px; }
+  .img-preview{ max-width:160px; display:block; margin-top:8px; border-radius:6px; border:1px solid var(--line); }
+  input[type=file]{ margin-top:8px; }
+  #globalStatus{
+    position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff; padding:10px 20px; border-radius:8px;
+    font-size:0.85rem; opacity:0; pointer-events:none; transition:opacity .3s;
+  }
+  #globalStatus.show{ opacity:1; }
+  .hidden{ display:none; }
+</style>
+</head>
+<body>
+
+<div id="loginView">
+  <h2>Espace de gestion</h2>
+  <p>Entrez votre e-mail et votre mot de passe pour accéder à votre espace de gestion.</p>
+  <label for="emailInput">E-mail</label>
+  <input type="email" id="emailInput" placeholder="vous@exemple.com">
+  <label for="passwordInput">Mot de passe</label>
+  <input type="password" id="passwordInput" placeholder="••••••••">
+  <button class="primary" id="signInBtn">Se connecter</button>
+  <div id="loginMsg"></div>
+</div>
+
+<div id="appView" class="hidden">
+  <header>
+    <div>
+      <h1>Espace de gestion</h1>
+      <div class="site-name" id="siteNameLabel"></div>
+    </div>
+    <button id="signOutBtn">Se déconnecter</button>
+  </header>
+  <main id="sectionsContainer">
+    <p style="color:#8a889a;">Chargement du contenu…</p>
+  </main>
+</div>
+
+<div id="globalStatus"></div>
+
+<script>
+// ==========================================================
+// CONFIGURATION — the ONLY things that change between clients.
+// Duplicate this file per client and edit these three lines;
+// everything else renders itself from that site's `schema`.
+// ==========================================================
+const SUPABASE_URL = "https://lerdkmzzdqcwxzjfmrpi.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_1zii7sk9Kr2Jset0Y_0oAQ_w9KPOBej";
+const SITE_SLUG = "mushin-dojo";
+const MEDIA_BUCKET = "media";
+// ==========================================================
+
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const loginView = document.getElementById('loginView');
+const appView = document.getElementById('appView');
+const sectionsContainer = document.getElementById('sectionsContainer');
+const globalStatus = document.getElementById('globalStatus');
+
+let currentSite = null;
+let siteSchema = null; // { sections: [ {key,label,fields:[{key,label,type,item_fields?}]} ] }
+
+function flash(msg){
+  globalStatus.textContent = msg;
+  globalStatus.classList.add('show');
+  setTimeout(()=> globalStatus.classList.remove('show'), 2200);
+}
+
+// ---------- AUTH ----------
+document.getElementById('signInBtn').addEventListener('click', async () => {
+  const email = document.getElementById('emailInput').value.trim();
+  const password = document.getElementById('passwordInput').value;
+  const msgEl = document.getElementById('loginMsg');
+  if (!email || !password){ msgEl.textContent = "Veuillez entrer votre e-mail et votre mot de passe."; msgEl.style.color = '#DC080F'; return; }
+  const { error } = await sb.auth.signInWithPassword({ email, password });
+  if (error){ msgEl.textContent = error.message; msgEl.style.color = '#DC080F'; return; }
+  msgEl.textContent = "";
+});
+
+document.getElementById('signOutBtn').addEventListener('click', async () => {
+  await sb.auth.signOut();
+  window.location.reload();
+});
+
+sb.auth.onAuthStateChange((event, session) => { if (session){ boot(); } });
+
+async function boot(){
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session){ return; }
+  loginView.classList.add('hidden');
+  appView.classList.remove('hidden');
+  await loadSiteAndSections(session.user.id);
+}
+
+// ---------- LOAD ----------
+async function loadSiteAndSections(userId){
+  const { data: site, error: siteErr } = await sb
+    .from('sites').select('*').eq('slug', SITE_SLUG).single();
+  if (siteErr || !site){
+    sectionsContainer.innerHTML = `<p style="color:#DC080F;">Site introuvable.</p>`;
+    return;
+  }
+  currentSite = site;
+  siteSchema = site.schema || { sections: [] };
+  document.getElementById('siteNameLabel').textContent = site.name;
+  document.documentElement.style.setProperty('--brand', site.primary_color || '#2D17A9');
+
+  const { data: admin } = await sb
+    .from('site_admins').select('*').eq('site_id', site.id).eq('user_id', userId).single();
+  if (!admin){
+    sectionsContainer.innerHTML = `<p style="color:#DC080F;">Votre compte n'a pas encore accès à ce site. Demandez à un administrateur de vous ajouter.</p>`;
+    return;
+  }
+
+  const { data: sections, error: secErr } = await sb
+    .from('sections').select('*').eq('site_id', site.id).order('position');
+  if (secErr){
+    sectionsContainer.innerHTML = `<p style="color:#DC080F;">Erreur de chargement : ${secErr.message}</p>`;
+    return;
+  }
+
+  renderSections(sections);
+}
+
+// ---------- RENDER (fully driven by siteSchema, nothing hardcoded) ----------
+function schemaFor(sectionKey){
+  return (siteSchema.sections || []).find(s => s.key === sectionKey);
+}
+
+function renderSections(sections){
+  sectionsContainer.innerHTML = '';
+  sections.forEach(section => {
+    const secSchema = schemaFor(section.section_key);
+    const card = document.createElement('div');
+    card.className = 'section-card';
+
+    const title = secSchema ? secSchema.label : section.section_key;
+    card.innerHTML = `<h3>${title} <span class="save-state"></span></h3>`;
+
+    const form = document.createElement('div');
+    const fields = secSchema ? secSchema.fields : [];
+    fields.forEach(fieldDef => renderField(form, fieldDef, section.content));
+    card.appendChild(form);
+
+    const actions = document.createElement('div');
+    actions.className = 'actions-row';
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'primary';
+    saveBtn.textContent = 'Enregistrer';
+    saveBtn.addEventListener('click', () => saveSection(section.id, card, fields));
+    actions.appendChild(saveBtn);
+    card.appendChild(actions);
+
+    sectionsContainer.appendChild(card);
+  });
+}
+
+// Renders one field per its declared type. Every input carries
+// data-key so collectFormData() can rebuild the content object.
+function renderField(container, fieldDef, content){
+  const { key, label, type } = fieldDef;
+  const value = content ? content[key] : undefined;
+
+  if (type === 'repeater'){
+    const wrap = document.createElement('div');
+    wrap.className = 'repeater-block';
+    wrap.dataset.repeaterKey = key;
+    wrap.innerHTML = `<label>${label}</label>`;
+    const itemsHost = document.createElement('div');
+    wrap.appendChild(itemsHost);
+
+    const items = Array.isArray(value) ? value : [];
+    items.forEach(item => addRepeaterItem(itemsHost, fieldDef.item_fields, item));
+
+    const addBtn = document.createElement('button');
+    addBtn.type = 'button';
+    addBtn.className = 'ghost';
+    addBtn.style.marginTop = '10px';
+    addBtn.textContent = '+ Ajouter un élément';
+    addBtn.addEventListener('click', () => addRepeaterItem(itemsHost, fieldDef.item_fields, {}));
+    wrap.appendChild(addBtn);
+
+    container.appendChild(wrap);
+    return;
+  }
+
+  const row = document.createElement('div');
+  row.className = 'field-row';
+  row.innerHTML = `<label>${label}</label>`;
+
+  if (type === 'image'){
+    if (value){
+      const img = document.createElement('img');
+      img.className = 'img-preview';
+      img.src = value;
+      row.appendChild(img);
+    }
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.dataset.key = key;
+    fileInput.dataset.fieldType = 'image';
+    // hidden field holds the resolved URL after upload (or the existing one)
+    const hidden = document.createElement('input');
+    hidden.type = 'hidden';
+    hidden.dataset.key = key;
+    hidden.dataset.fieldType = 'image-url';
+    hidden.value = value || '';
+    fileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const path = `${currentSite.slug}/${Date.now()}-${file.name}`;
+      const { error: upErr } = await sb.storage.from(MEDIA_BUCKET).upload(path, file, { upsert: true });
+      if (upErr){ flash("Échec du téléversement : " + upErr.message); return; }
+      const { data: pub } = sb.storage.from(MEDIA_BUCKET).getPublicUrl(path);
+      hidden.value = pub.publicUrl;
+      await sb.from('media').insert({ site_id: currentSite.id, url: pub.publicUrl, label: file.name });
+      let preview = row.querySelector('img.img-preview');
+      if (!preview){
+        preview = document.createElement('img');
+        preview.className = 'img-preview';
+        row.insertBefore(preview, fileInput);
+      }
+      preview.src = pub.publicUrl;
+      flash('Image téléversée.');
+    });
+    row.appendChild(fileInput);
+    row.appendChild(hidden);
+    container.appendChild(row);
+    return;
+  }
+
+  const input = document.createElement(type === 'textarea' ? 'textarea' : 'input');
+  if (type !== 'textarea') input.type = 'text';
+  input.value = value ?? '';
+  input.dataset.key = key;
+  input.dataset.fieldType = 'plain';
+  row.appendChild(input);
+  container.appendChild(row);
+}
+
+function addRepeaterItem(host, itemFields, itemData){
+  const item = document.createElement('div');
+  item.className = 'repeater-item';
+  const head = document.createElement('div');
+  head.className = 'repeater-item-head';
+  const removeBtn = document.createElement('button');
+  removeBtn.type = 'button';
+  removeBtn.className = 'link-danger';
+  removeBtn.textContent = 'Supprimer';
+  removeBtn.addEventListener('click', () => item.remove());
+  head.appendChild(document.createElement('span'));
+  head.appendChild(removeBtn);
+  item.appendChild(head);
+
+  itemFields.forEach(fieldDef => renderField(item, fieldDef, itemData));
+  host.appendChild(item);
+}
+
+// ---------- COLLECT + SAVE ----------
+function collectFormData(card, fields){
+  const data = {};
+
+  fields.forEach(fieldDef => {
+    if (fieldDef.type === 'repeater'){
+      const repeaterBlock = card.querySelector(`[data-repeater-key="${fieldDef.key}"]`);
+      const items = [];
+      repeaterBlock.querySelectorAll(':scope > div > .repeater-item').forEach(itemEl => {
+        const itemObj = {};
+        fieldDef.item_fields.forEach(f => {
+          itemObj[f.key] = readFieldValue(itemEl, f);
+        });
+        items.push(itemObj);
+      });
+      data[fieldDef.key] = items;
+      return;
+    }
+    data[fieldDef.key] = readFieldValueFromCard(card, fieldDef);
+  });
+
+  return data;
+}
+
+function readFieldValueFromCard(card, fieldDef){
+  if (fieldDef.type === 'image'){
+    const hidden = card.querySelector(`input[data-field-type="image-url"][data-key="${fieldDef.key}"]`);
+    return hidden ? hidden.value : '';
+  }
+  const el = card.querySelector(`[data-field-type="plain"][data-key="${fieldDef.key}"]`);
+  return el ? el.value : '';
+}
+
+function readFieldValue(scopeEl, fieldDef){
+  if (fieldDef.type === 'image'){
+    const hidden = scopeEl.querySelector(`input[data-field-type="image-url"][data-key="${fieldDef.key}"]`);
+    return hidden ? hidden.value : '';
+  }
+  const el = scopeEl.querySelector(`[data-field-type="plain"][data-key="${fieldDef.key}"]`);
+  return el ? el.value : '';
+}
+
+async function saveSection(sectionId, card, fields){
+  const stateEl = card.querySelector('.save-state');
+  stateEl.textContent = 'Enregistrement…';
+
+  const updated = collectFormData(card, fields);
+
+  const { error } = await sb.from('sections')
+    .update({ content: updated, updated_at: new Date().toISOString() })
+    .eq('id', sectionId);
+
+  if (error){
+    stateEl.textContent = 'Erreur';
+    flash("Échec de l'enregistrement : " + error.message);
+  } else {
+    stateEl.textContent = 'Enregistré ✓';
+    flash('Modifications enregistrées.');
+    setTimeout(()=> stateEl.textContent = '', 2500);
+  }
+}
+
+// ---------- init ----------
+boot();
+</script>
+</body>
+</html>

@@ -554,6 +554,8 @@ button{font-family:inherit;}
 }
 .social-row a:hover{background:var(--vermilion);border-color:var(--vermilion);color:#fff;}
 .footer-copy{text-align:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid #58575a;font-size:.82rem;}
+.footer-admin-link{color:inherit;opacity:.7;text-decoration:underline;}
+.footer-admin-link:hover{opacity:1;}
 
 /* ==========================================================
    SCROLL REVEAL — block-level (unchanged) + staggered children
