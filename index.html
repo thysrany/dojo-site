@@ -56,7 +56,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <!-- CUSTOMIZE: bump ?v=N on this file and js/main.js whenever CSS/JS
      changes, so GitHub Pages' CDN cache can't serve a stale copy. -->
-<link rel="stylesheet" href="css/styles.css?v=51">
+<link rel="stylesheet" href="css/styles.css?v=52">
 </head>
 <body>
 
@@ -253,7 +253,7 @@
       <h2 class="center">Formation</h2>
       <p class="section-lede center">Des cours d'aikido et de karaté du lundi au samedi, adaptés à chaque étape de la vie :</p>
 
-      <div class="programs-grid reveal-stagger" data-cms-repeat="programmes" data-cms-label="Programmes">
+      <div class="programs-grid reveal-stagger" data-cms-repeat="programmes.items" data-cms-label="Programmes">
         <article class="program-card stagger-item" data-cms-item>
           <img class="photo-placeholder" data-cms-field="image" data-cms-label="Photo" src="assets/gallery-real-groupe-enfants.jpg" alt="Enfants pratiquants au dojo" loading="lazy">
           <h3 data-cms-field="titre" data-cms-label="Titre">Aikido Enfants</h3>
@@ -281,7 +281,7 @@
       <h2 class="center">Événements</h2>
       <p class="section-lede center">Des rendez-vous réguliers pour approfondir la pratique et vivre l'esprit du dojo :</p>
 
-      <div class="programs-grid programs-grid-3 reveal-stagger" data-cms-repeat="evenements" data-cms-label="Événements">
+      <div class="programs-grid programs-grid-3 reveal-stagger" data-cms-repeat="evenements.items" data-cms-label="Événements">
         <article class="program-card stagger-item" data-cms-item>
           <img class="photo-placeholder" data-cms-field="image" data-cms-label="Photo" src="assets/gallery-real-aikido-seiza.jpg" alt="Séminaire d'aïkido" loading="lazy">
           <h3 data-cms-field="titre" data-cms-label="Titre">Séminaire Aïkido</h3>
@@ -441,7 +441,7 @@
       <h2 class="center">Horaires</h2>
       <p class="section-lede center">Les cours d'Aikido et de Karaté se tiennent du lundi au samedi, adaptés aux enfants et aux adultes, débutants ou confirmés.</p>
       <div class="contact-card schedule-list">
-        <div data-cms-repeat="horaires" data-cms-label="Horaires des cours">
+        <div data-cms-repeat="horaires.items" data-cms-label="Horaires des cours">
           <div class="schedule-row" data-cms-item>
             <span class="discipline" data-cms-field="jours" data-cms-label="Jours">Lundi au Vendredi</span>
             <span class="heure" data-cms-field="heure" data-cms-label="Heure">2:00 PM – 9:00 PM</span>
@@ -555,7 +555,7 @@
   <p class="footer-copy">&copy; <span id="year"></span> Mushin Dojo. Tous droits réservés.</p>
 </footer>
 
-<script src="js/main.js?v=51"></script>
+<script src="js/main.js?v=52"></script>
 <!-- CMS: rempli automatiquement le contenu publié via le panneau d'édition.
      cms.js doit être copié depuis ~/code/fuc-cms/cms.js vers ce dossier. -->
 <script src="cms.js"
