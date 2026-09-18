@@ -42,11 +42,6 @@
     background:var(--brand, var(--indigo)); color:#fff; border:none; padding:11px 20px;
     border-radius:6px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:16px;
   }
-  button.publish{
-    background:var(--ok); color:#fff; border:none; padding:11px 20px;
-    border-radius:6px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:16px;
-  }
-  .publish-hint{ font-size:0.78rem; color:#8a889a; margin:6px 0 0; }
   button.ghost{
     background:transparent; border:1px solid var(--line); color:#3a3850; padding:8px 14px;
     border-radius:6px; font-size:0.85rem; cursor:pointer;
@@ -215,19 +210,7 @@ function renderSections(sections){
     saveBtn.textContent = 'Enregistrer';
     saveBtn.addEventListener('click', () => saveSection(section.id, card, fields));
     actions.appendChild(saveBtn);
-
-    const publishBtn = document.createElement('button');
-    publishBtn.className = 'publish';
-    publishBtn.textContent = 'Publier';
-    publishBtn.addEventListener('click', () => publishSection(section.id, card, fields));
-    actions.appendChild(publishBtn);
-
     card.appendChild(actions);
-
-    const hint = document.createElement('p');
-    hint.className = 'publish-hint';
-    hint.textContent = 'Enregistrer garde un brouillon sans le rendre visible. Publier met ces modifications en ligne immédiatement.';
-    card.appendChild(hint);
 
     sectionsContainer.appendChild(card);
   });
@@ -377,34 +360,13 @@ function readFieldValue(scopeEl, fieldDef){
   return el ? el.value : '';
 }
 
+// Writes to both content and published_content in one action — there's
+// no separate draft/publish step for the customer to think about.
+// Saving here means it's live; public_sections (and cms.js on the live
+// site) only ever reads published_content, never content alone.
 async function saveSection(sectionId, card, fields){
   const stateEl = card.querySelector('.save-state');
   stateEl.textContent = 'Enregistrement…';
-
-  const updated = collectFormData(card, fields);
-
-  const { error } = await sb.from('sections')
-    .update({ content: updated, updated_at: new Date().toISOString() })
-    .eq('id', sectionId);
-
-  if (error){
-    stateEl.textContent = 'Erreur';
-    flash("Échec de l'enregistrement : " + error.message);
-  } else {
-    stateEl.textContent = 'Enregistré ✓';
-    flash('Modifications enregistrées.');
-    setTimeout(()=> stateEl.textContent = '', 2500);
-  }
-}
-
-// Publier writes the CURRENT form state to both content and
-// published_content — so what's on screen becomes live immediately,
-// regardless of whether "Enregistrer" was clicked first. This is what
-// public_sections (and cms.js on the live site) actually reads from;
-// content alone is never shown to visitors.
-async function publishSection(sectionId, card, fields){
-  const stateEl = card.querySelector('.save-state');
-  stateEl.textContent = 'Publication…';
 
   const updated = collectFormData(card, fields);
   const now = new Date().toISOString();
@@ -420,10 +382,10 @@ async function publishSection(sectionId, card, fields){
 
   if (error){
     stateEl.textContent = 'Erreur';
-    flash("Échec de la publication : " + error.message);
+    flash("Échec de l'enregistrement : " + error.message);
   } else {
-    stateEl.textContent = 'Publié ✓';
-    flash('Modifications publiées sur le site.');
+    stateEl.textContent = 'Enregistré ✓';
+    flash('Modifications enregistrées et mises en ligne.');
     setTimeout(()=> stateEl.textContent = '', 2500);
   }
 }
