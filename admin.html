@@ -42,6 +42,11 @@
     background:var(--brand, var(--indigo)); color:#fff; border:none; padding:11px 20px;
     border-radius:6px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:16px;
   }
+  button.publish{
+    background:var(--ok); color:#fff; border:none; padding:11px 20px;
+    border-radius:6px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:16px;
+  }
+  .publish-hint{ font-size:0.78rem; color:#8a889a; margin:6px 0 0; }
   button.ghost{
     background:transparent; border:1px solid var(--line); color:#3a3850; padding:8px 14px;
     border-radius:6px; font-size:0.85rem; cursor:pointer;
@@ -210,7 +215,19 @@ function renderSections(sections){
     saveBtn.textContent = 'Enregistrer';
     saveBtn.addEventListener('click', () => saveSection(section.id, card, fields));
     actions.appendChild(saveBtn);
+
+    const publishBtn = document.createElement('button');
+    publishBtn.className = 'publish';
+    publishBtn.textContent = 'Publier';
+    publishBtn.addEventListener('click', () => publishSection(section.id, card, fields));
+    actions.appendChild(publishBtn);
+
     card.appendChild(actions);
+
+    const hint = document.createElement('p');
+    hint.className = 'publish-hint';
+    hint.textContent = 'Enregistrer garde un brouillon sans le rendre visible. Publier met ces modifications en ligne immédiatement.';
+    card.appendChild(hint);
 
     sectionsContainer.appendChild(card);
   });
@@ -376,6 +393,37 @@ async function saveSection(sectionId, card, fields){
   } else {
     stateEl.textContent = 'Enregistré ✓';
     flash('Modifications enregistrées.');
+    setTimeout(()=> stateEl.textContent = '', 2500);
+  }
+}
+
+// Publier writes the CURRENT form state to both content and
+// published_content — so what's on screen becomes live immediately,
+// regardless of whether "Enregistrer" was clicked first. This is what
+// public_sections (and cms.js on the live site) actually reads from;
+// content alone is never shown to visitors.
+async function publishSection(sectionId, card, fields){
+  const stateEl = card.querySelector('.save-state');
+  stateEl.textContent = 'Publication…';
+
+  const updated = collectFormData(card, fields);
+  const now = new Date().toISOString();
+
+  const { error } = await sb.from('sections')
+    .update({
+      content: updated,
+      published_content: updated,
+      updated_at: now,
+      published_at: now
+    })
+    .eq('id', sectionId);
+
+  if (error){
+    stateEl.textContent = 'Erreur';
+    flash("Échec de la publication : " + error.message);
+  } else {
+    stateEl.textContent = 'Publié ✓';
+    flash('Modifications publiées sur le site.');
     setTimeout(()=> stateEl.textContent = '', 2500);
   }
 }
