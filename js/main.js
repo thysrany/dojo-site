@@ -51,8 +51,18 @@
   // motion goes unnoticed. Require the shape's own container to be well
   // into the viewport (its middle roughly at/past the vertical center)
   // before starting, on top of the CSS transition-delay already on them.
+  // This strict timing is right for the home page's large, spread-out
+  // sections, but on the Instructeurs page — five cards stacked close
+  // together — it means waiting for the same slow trigger five times in
+  // a row while scrolling, which feels sluggish. That page gets its own
+  // lighter, faster-triggering observer below instead.
   var shapeEls = document.querySelectorAll(".histoire-shape, .cta-shape");
-  if ("IntersectionObserver" in window && shapeEls.length) {
+  var shapeElsHome = [], shapeElsList = [];
+  shapeEls.forEach(function (el) {
+    (el.closest(".instructors-list") ? shapeElsList : shapeElsHome).push(el);
+  });
+
+  if ("IntersectionObserver" in window && shapeElsHome.length) {
     var shapeIo = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
@@ -64,9 +74,26 @@
       },
       { threshold: 0.6, rootMargin: "0px 0px -20% 0px" }
     );
-    shapeEls.forEach(function (el) { shapeIo.observe(el); });
+    shapeElsHome.forEach(function (el) { shapeIo.observe(el); });
   } else {
-    shapeEls.forEach(function (el) { el.classList.add("in-view"); });
+    shapeElsHome.forEach(function (el) { el.classList.add("in-view"); });
+  }
+
+  if ("IntersectionObserver" in window && shapeElsList.length) {
+    var shapeIoList = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            shapeIoList.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    shapeElsList.forEach(function (el) { shapeIoList.observe(el); });
+  } else {
+    shapeElsList.forEach(function (el) { el.classList.add("in-view"); });
   }
 
   // ---- Gallery carousel (pages by sets of 3) ----
